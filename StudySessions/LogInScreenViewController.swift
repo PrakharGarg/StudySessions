@@ -35,7 +35,7 @@ class LogInScreenViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-                // If the save is successful, segue to the main page
+            // If the save is successful, segue to the main page
             else {
                 print("YAY!")
                let controller = self.storyboard?.instantiateViewController(withIdentifier: "PageViewController")

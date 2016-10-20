@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "32B55BF08A0D54F06631F82FF6DF744A43E143F0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B2A645E286B21E59AD6F661CA0F9F89A066476D0" : 9223372036854775807,
+    "32B55BF08A0D54F06631F82FF6DF744A43E143F0" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "68C6B585-C964-4418-B5F2-5E707F34863B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B2A645E286B21E59AD6F661CA0F9F89A066476D0" : "..\/..",
+    "32B55BF08A0D54F06631F82FF6DF744A43E143F0" : "StudySessions\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "StudySessions",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "StudySessions.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/PrakharGarg\/StudySessions.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "32B55BF08A0D54F06631F82FF6DF744A43E143F0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/PrakharGarg\/iOS-Class.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B2A645E286B21E59AD6F661CA0F9F89A066476D0"
+    }
+  ]
+}

@@ -17,6 +17,7 @@ class SignUpScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
 
         
     }
@@ -51,7 +52,10 @@ class SignUpScreenViewController: UIViewController {
                 // If the save is successful, segue to the main page
                 else {
                     print("YAY!")
-                    self.performSegue(withIdentifier: "SignUpToMain", sender: nil)
+                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "PageViewController")
+                    
+                    self.present(controller!, animated: true, completion: { () -> Void in
+                    })
                 }
             })
             

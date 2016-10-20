@@ -8,14 +8,25 @@
 
 import UIKit
 
-class HomeScreenViewController: UIView {
+class HomeScreenViewController: UIViewController {
+    // Toggle to determine whether to see all sessions or just the ones you've joined
+    // On = view ones you've joined
+    @IBOutlet weak var toggleSessions: UIBarButtonItem!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Study Sessions"
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+        // Do any additional setup after loading the view.
     }
-    */
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Home"
+        navigationItem.backBarButtonItem = backItem
+    }
 }

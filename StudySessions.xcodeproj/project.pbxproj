@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CA624F41DB6B84F00F4E07B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F31DB6B84F00F4E07B /* HomeScreenViewController.swift */; };
 		1CA624F61DB6BAEA00F4E07B /* CreateStudySessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F51DB6BAEA00F4E07B /* CreateStudySessionViewController.swift */; };
 		1CA624F81DB6C00700F4E07B /* MyClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F71DB6C00700F4E07B /* MyClassesViewController.swift */; };
 		1CA624FA1DB6C24A00F4E07B /* SettingsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F91DB6C24A00F4E07B /* SettingsScreenViewController.swift */; };
 		1CC886C01DB6AA09007F5E62 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */; };
 		1CD1A3FB1DB6899900F68C35 /* SignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD1A3FA1DB6899900F68C35 /* SignUpScreenViewController.swift */; };
 		1CD828FD1DB67B38005F3A66 /* LogInScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD828FC1DB67B38005F3A66 /* LogInScreenViewController.swift */; };
+		1CE06B5B1DB85697006B95DE /* keyboardDissapear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE06B5A1DB85697006B95DE /* keyboardDissapear.swift */; };
+		1CE06B5D1DB85807006B95DE /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE06B5C1DB85807006B95DE /* HomeScreenViewController.swift */; };
 		1CE538B41DB678620039B4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE538B31DB678620039B4A2 /* AppDelegate.swift */; };
 		1CE538BD1DB678620039B4A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538BB1DB678620039B4A2 /* Main.storyboard */; };
 		1CE538BF1DB678630039B4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538BE1DB678630039B4A2 /* Assets.xcassets */; };
@@ -23,13 +24,14 @@
 
 /* Begin PBXFileReference section */
 		18009C89CAE399EA738014B2 /* Pods-StudySessions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudySessions.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudySessions/Pods-StudySessions.release.xcconfig"; sourceTree = "<group>"; };
-		1CA624F31DB6B84F00F4E07B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeScreenViewController.swift; path = ../HomeScreenViewController.swift; sourceTree = "<group>"; };
 		1CA624F51DB6BAEA00F4E07B /* CreateStudySessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudySessionViewController.swift; sourceTree = "<group>"; };
 		1CA624F71DB6C00700F4E07B /* MyClassesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClassesViewController.swift; sourceTree = "<group>"; };
 		1CA624F91DB6C24A00F4E07B /* SettingsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenViewController.swift; sourceTree = "<group>"; };
 		1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		1CD1A3FA1DB6899900F68C35 /* SignUpScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewController.swift; sourceTree = "<group>"; };
 		1CD828FC1DB67B38005F3A66 /* LogInScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInScreenViewController.swift; sourceTree = "<group>"; };
+		1CE06B5A1DB85697006B95DE /* keyboardDissapear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = keyboardDissapear.swift; sourceTree = "<group>"; };
+		1CE06B5C1DB85807006B95DE /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		1CE538B01DB678620039B4A2 /* StudySessions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudySessions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE538B31DB678620039B4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CE538BC1DB678620039B4A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,10 +75,11 @@
 		1CE538B21DB678620039B4A2 /* StudySessions */ = {
 			isa = PBXGroup;
 			children = (
-				1CA624F31DB6B84F00F4E07B /* HomeScreenViewController.swift */,
+				1CE06B5C1DB85807006B95DE /* HomeScreenViewController.swift */,
 				1CE538B31DB678620039B4A2 /* AppDelegate.swift */,
 				1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */,
 				1CE538BB1DB678620039B4A2 /* Main.storyboard */,
+				1CE06B5A1DB85697006B95DE /* keyboardDissapear.swift */,
 				1CA624F91DB6C24A00F4E07B /* SettingsScreenViewController.swift */,
 				1CA624F71DB6C00700F4E07B /* MyClassesViewController.swift */,
 				1CA624F51DB6BAEA00F4E07B /* CreateStudySessionViewController.swift */,
@@ -235,8 +238,9 @@
 				1CD1A3FB1DB6899900F68C35 /* SignUpScreenViewController.swift in Sources */,
 				1CD828FD1DB67B38005F3A66 /* LogInScreenViewController.swift in Sources */,
 				1CA624F81DB6C00700F4E07B /* MyClassesViewController.swift in Sources */,
-				1CA624F41DB6B84F00F4E07B /* HomeScreenViewController.swift in Sources */,
 				1CA624F61DB6BAEA00F4E07B /* CreateStudySessionViewController.swift in Sources */,
+				1CE06B5B1DB85697006B95DE /* keyboardDissapear.swift in Sources */,
+				1CE06B5D1DB85807006B95DE /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,7 +56,6 @@ class SettingsScreenViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -75,6 +74,7 @@ class SettingsScreenViewController: UIViewController, UITableViewDelegate, UITab
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     // Logout button performs an unwind segue
     @IBAction func logout(_ sender: AnyObject) {
         print("logging out")
@@ -84,7 +84,6 @@ class SettingsScreenViewController: UIViewController, UITableViewDelegate, UITab
         self.performSegue(withIdentifier: "unwindToMain", sender: nil)
     }
     @IBAction func saveButton(_ sender: AnyObject) {
-        
         PFUser.enableAutomaticUser()
         let newEmail = emailLabel.text
         let newPass = passwordLabel.text
@@ -101,7 +100,5 @@ class SettingsScreenViewController: UIViewController, UITableViewDelegate, UITab
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         tableView.reloadData()
-        
-        
     }
 }

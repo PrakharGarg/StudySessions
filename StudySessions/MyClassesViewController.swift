@@ -10,14 +10,13 @@ import UIKit
 import Parse
 
 class MyClassesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
-    
-    var users = [PFObject]()
+    // Table view delegate
+    @IBOutlet var tableView: UITableView!
+    // Variable that holds all of the courses for the current user
     var courses = [PFObject]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Hide the keyboard
         hideKeyboardWhenTappedAround()
         // Set the title of the view controller
@@ -28,7 +27,6 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
-        
     }
     // Refresh function
     func refresh(refreshControl: UIRefreshControl) {
@@ -49,7 +47,6 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -58,18 +55,17 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     // Create cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "coursesCell", for: indexPath) as! CoursesTableViewCell
-        let courses = self.courses[indexPath.row]
-        cell.courseLabel.text = (courses["name"]) as? String
+        let cell = tableView.dequeueReusableCell(withIdentifier: "showCoursesCell", for: indexPath) as! CoursesTableViewCell
+        let course = self.courses[indexPath.row]
+        cell.courseLabel.text = (course["name"]) as? String
         
         return cell
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
+    
     
     
  }

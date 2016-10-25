@@ -161,9 +161,11 @@
                     <connections>
                         <outlet property="tableView" destination="5dS-D2-uoF" id="gvU-7v-2wq"/>
                         <outlet property="toggleSessions" destination="HeA-nN-PYx" id="nFK-GG-UZ3"/>
+                        <segue destination="Cvh-U3-dSC" kind="unwind" unwindAction="unwindToMainWithSegue:" id="zIc-lE-89Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47a-1F-074" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Cvh-U3-dSC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2354" y="-164"/>
         </scene>
@@ -178,7 +180,91 @@
                     <view key="view" contentMode="scaleToFill" id="vBk-bo-cdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ea4-KS-MRf">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSq-rW-cQA">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WCW-py-gma">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="************" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AA8-NE-8JL">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1NZ-ti-GnI">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="coursesCell" id="HPb-kn-8EU" customClass="CoursesTableViewCell" customModule="StudySessions" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HPb-kn-8EU" id="Njc-FQ-o6P">
+                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3b0-Aa-Df7">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3b0-Aa-Df7" firstAttribute="bottom" secondItem="Njc-FQ-o6P" secondAttribute="bottomMargin" id="TlB-4A-TsD"/>
+                                                <constraint firstItem="3b0-Aa-Df7" firstAttribute="leading" secondItem="Njc-FQ-o6P" secondAttribute="leadingMargin" id="mYc-Na-g1b"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseLabel" destination="3b0-Aa-Df7" id="al9-9X-Llv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mYk-sE-hTT" id="eBf-4E-9nO"/>
+                                    <outlet property="delegate" destination="mYk-sE-hTT" id="hkw-8m-Xjp"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXl-iQ-XwZ">
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="mYk-sE-hTT" eventType="touchUpInside" id="ntx-HX-pPI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently enrolled courses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPJ-aY-deP">
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WCW-py-gma" firstAttribute="leading" secondItem="YSq-rW-cQA" secondAttribute="leading" id="1by-jb-22D"/>
+                            <constraint firstItem="WCW-py-gma" firstAttribute="top" secondItem="Ea4-KS-MRf" secondAttribute="bottom" constant="8" symbolic="YES" id="2wc-If-6Wi"/>
+                            <constraint firstItem="cPJ-aY-deP" firstAttribute="top" secondItem="AA8-NE-8JL" secondAttribute="bottom" constant="17" id="31v-UZ-rkJ"/>
+                            <constraint firstItem="Ea4-KS-MRf" firstAttribute="leading" secondItem="WCW-py-gma" secondAttribute="leading" id="8OK-cp-2pv"/>
+                            <constraint firstItem="Ea4-KS-MRf" firstAttribute="top" secondItem="Z6d-Yj-4e6" secondAttribute="bottom" constant="39" id="A4P-bO-AjJ"/>
+                            <constraint firstItem="AA8-NE-8JL" firstAttribute="top" secondItem="YSq-rW-cQA" secondAttribute="bottom" constant="8" symbolic="YES" id="Bxg-Rq-um3"/>
+                            <constraint firstItem="cXl-iQ-XwZ" firstAttribute="top" secondItem="1NZ-ti-GnI" secondAttribute="bottom" constant="8" id="CJ7-Jq-hT5"/>
+                            <constraint firstAttribute="trailing" secondItem="1NZ-ti-GnI" secondAttribute="trailing" id="Ca8-7A-m2e"/>
+                            <constraint firstItem="1NZ-ti-GnI" firstAttribute="leading" secondItem="vBk-bo-cdC" secondAttribute="leading" id="Cb6-oU-0AV"/>
+                            <constraint firstItem="1NZ-ti-GnI" firstAttribute="top" secondItem="AA8-NE-8JL" secondAttribute="bottom" constant="66" id="GjD-70-2zA"/>
+                            <constraint firstItem="YSq-rW-cQA" firstAttribute="leading" secondItem="AA8-NE-8JL" secondAttribute="leading" id="HCL-dm-24G"/>
+                            <constraint firstItem="AA8-NE-8JL" firstAttribute="centerX" secondItem="1NZ-ti-GnI" secondAttribute="centerX" id="Sw6-YM-Lv2"/>
+                            <constraint firstItem="cPJ-aY-deP" firstAttribute="centerX" secondItem="AA8-NE-8JL" secondAttribute="centerX" id="TpB-Z1-bKw"/>
+                            <constraint firstItem="Ea4-KS-MRf" firstAttribute="leading" secondItem="vBk-bo-cdC" secondAttribute="leadingMargin" id="VYz-Kt-fId"/>
+                            <constraint firstAttribute="bottom" secondItem="cXl-iQ-XwZ" secondAttribute="bottom" constant="45" id="mih-0k-v97"/>
+                            <constraint firstItem="1NZ-ti-GnI" firstAttribute="centerX" secondItem="cXl-iQ-XwZ" secondAttribute="centerX" id="n92-Rk-K6N"/>
+                            <constraint firstItem="YSq-rW-cQA" firstAttribute="top" secondItem="WCW-py-gma" secondAttribute="bottom" constant="22" id="rI3-2I-8WM"/>
+                            <constraint firstItem="WCW-py-gma" firstAttribute="trailing" secondItem="AA8-NE-8JL" secondAttribute="trailing" id="z6j-nm-tR4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nIh-nh-3jP">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="jYY-I7-xTZ">
@@ -188,6 +274,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emailLabel" destination="WCW-py-gma" id="Qbq-b7-Frt"/>
+                        <outlet property="passwordLabel" destination="AA8-NE-8JL" id="o8i-Ao-b5Q"/>
+                        <outlet property="tableView" destination="1NZ-ti-GnI" id="ZCa-2L-Zzh"/>
                         <segue destination="tw4-hG-Ade" kind="unwind" identifier="unwindToMain" unwindAction="unwindToMainWithSegue:" id="90p-ys-HaU"/>
                     </connections>
                 </viewController>

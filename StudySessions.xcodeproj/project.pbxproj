@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C6C30A41DBC6C960093C18A /* CoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6C30A31DBC6C960093C18A /* CoursesTableViewCell.swift */; };
 		1CA624F61DB6BAEA00F4E07B /* CreateStudySessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F51DB6BAEA00F4E07B /* CreateStudySessionViewController.swift */; };
 		1CA624F81DB6C00700F4E07B /* MyClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F71DB6C00700F4E07B /* MyClassesViewController.swift */; };
 		1CA624FA1DB6C24A00F4E07B /* SettingsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F91DB6C24A00F4E07B /* SettingsScreenViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		18009C89CAE399EA738014B2 /* Pods-StudySessions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudySessions.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudySessions/Pods-StudySessions.release.xcconfig"; sourceTree = "<group>"; };
+		1C6C30A31DBC6C960093C18A /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
 		1CA624F51DB6BAEA00F4E07B /* CreateStudySessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudySessionViewController.swift; sourceTree = "<group>"; };
 		1CA624F71DB6C00700F4E07B /* MyClassesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClassesViewController.swift; sourceTree = "<group>"; };
 		1CA624F91DB6C24A00F4E07B /* SettingsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				1CE538B31DB678620039B4A2 /* AppDelegate.swift */,
 				1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */,
 				1CE538BB1DB678620039B4A2 /* Main.storyboard */,
+				1C6C30A31DBC6C960093C18A /* CoursesTableViewCell.swift */,
 				1CE06B5A1DB85697006B95DE /* keyboardDissapear.swift */,
 				1CA624F91DB6C24A00F4E07B /* SettingsScreenViewController.swift */,
 				1CA624F71DB6C00700F4E07B /* MyClassesViewController.swift */,
@@ -144,6 +147,7 @@
 				TargetAttributes = {
 					1CE538AF1DB678620039B4A2 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = XM22U8D29U;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -240,6 +244,7 @@
 				1CA624F81DB6C00700F4E07B /* MyClassesViewController.swift in Sources */,
 				1CA624F61DB6BAEA00F4E07B /* CreateStudySessionViewController.swift in Sources */,
 				1CE06B5B1DB85697006B95DE /* keyboardDissapear.swift in Sources */,
+				1C6C30A41DBC6C960093C18A /* CoursesTableViewCell.swift in Sources */,
 				1CE06B5D1DB85807006B95DE /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +367,7 @@
 			baseConfigurationReference = 2ADBBCD5C92527EB4B6EBCE5 /* Pods-StudySessions.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XM22U8D29U;
 				INFOPLIST_FILE = StudySessions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Prakhar.StudySessions;
@@ -375,6 +381,7 @@
 			baseConfigurationReference = 18009C89CAE399EA738014B2 /* Pods-StudySessions.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XM22U8D29U;
 				INFOPLIST_FILE = StudySessions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Prakhar.StudySessions;

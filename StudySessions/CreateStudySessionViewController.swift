@@ -25,11 +25,12 @@ class CreateStudySessionViewController: UIViewController {
     }
     
 // SAMPLE CREATE SESSION QUERY
+//    func createSesh(){
 //    var studySession = PFObject(className: "StudySessions")
-//    studySession["name"] = "Test #3"
+//    studySession["name"] = "Test #2"
 //    studySession["description"] = "foo"
-//    studySession["location"] = "GDC 3.12"
-//    studySession["course"] = "CS429"
+//    studySession["location"] = "PCL 3.12"
+//    studySession["course"] = "CS439"
 //    studySession["time"] = "5:30pm"
 //    studySession["students"] = ["SjestbPm0z"]
 //    
@@ -40,6 +41,6 @@ class CreateStudySessionViewController: UIViewController {
 //        // There was a problem, check error.description
 //        }
 //    }
-    
+//    }
     
 }

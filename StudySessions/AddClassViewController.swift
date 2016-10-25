@@ -1,75 +1,76 @@
 //
-//  MyClassesViewController.swift
+//  AddClassViewController.swift
 //  StudySessions
 //
-//  Created by Prakhar Garg on 10/18/16.
+//  Created by Elizabeth Haynes on 10/24/16.
 //  Copyright © 2016 Group2. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-class MyClassesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddClassViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
     
-    var users = [PFObject]()
-    var courses = [PFObject]()
-
+    var allCourses = [PFObject]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Hide the keyboard
         hideKeyboardWhenTappedAround()
         // Set the title of the view controller
         self.title = "My Classes"
         // Find all of the courses for the current user
-        findCourses()
+        findAllCourses()
         // Allow users to refresh the page if the pull down
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
-        
+        print("loaded add course page")
     }
     // Refresh function
     func refresh(refreshControl: UIRefreshControl) {
-        findCourses()
+        findAllCourses()
         refreshControl.endRefreshing()
     }
     // Find all of the courses for the current user by running a Parse query in the Courses model for the student's ID.
-    func findCourses() {
-        let user = PFUser.current()
+    func findAllCourses() {
         let query = PFQuery(className:"Courses")
-        query.whereKey("students", equalTo:(user?.objectId)!)
         query.findObjectsInBackground { (object: [PFObject]?, error: Error?) in
             if error == nil {
-                self.courses = object!
+                self.allCourses = object!
                 self.tableView.reloadData()
+                print("found courses, there are " + String(self.allCourses.count))
             }
         }
+        print("done finding classes, there are " + String(self.allCourses.count))
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.courses.count
-    }
-    // Create cells
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "coursesCell", for: indexPath) as! CoursesTableViewCell
-        let courses = self.courses[indexPath.row]
-        cell.courseLabel.text = (courses["name"]) as? String
-        
-        return cell
+        print ("count" + String(self.allCourses.count))
+        return self.allCourses.count
     }
     
+    // Create cells
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addClassCell", for: indexPath)
+        print ("count2" + String(self.allCourses.count))
+        let course = self.allCourses[indexPath.row]
+        cell.textLabel?.text = (course["name"]) as? String
+        cell.detailTextLabel?.text = (course["professor"]) as? String
+        return cell
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
-    
-    
- }
+}

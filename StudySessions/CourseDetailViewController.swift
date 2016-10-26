@@ -11,16 +11,10 @@ import Parse
 
 class CourseDetailViewController: UIViewController {
 
-    var detailCourse: PFObject
+    var detailCourse: PFObject?
     
     @IBOutlet weak var professor: UILabel!
     @IBOutlet weak var courseName: UILabel!
-    
-    init(courseName:String, prof:String)
-    {
-        self.courseName.text = courseName
-        self.professor.text = prof
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

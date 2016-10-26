@@ -17,8 +17,10 @@ class LogInScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set all of the fields to be empty
-        email.text = ""
-        password.text = ""
+        if PFUser.current() != nil {
+            let user = PFUser.current()
+            email.text = user?.username
+        }
         hideKeyboardWhenTappedAround()
     }
 
@@ -48,7 +50,8 @@ class LogInScreenViewController: UIViewController {
     // Segue when the User logs out
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
         // Set the fields to be empty
-        email.text = ""
+        let user = PFUser.current()
+        email.text = user?.username
         password.text = ""
     }
 }

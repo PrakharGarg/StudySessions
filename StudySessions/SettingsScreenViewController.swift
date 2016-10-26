@@ -78,9 +78,7 @@ class SettingsScreenViewController: UIViewController, UITableViewDelegate, UITab
     // Logout button performs an unwind segue
     @IBAction func logout(_ sender: AnyObject) {
         print("logging out")
-        print(PFUser.current()?.email)
         PFUser.logOut()
-        print(PFUser.current()?.email)
         self.performSegue(withIdentifier: "unwindToMain", sender: nil)
     }
     @IBAction func saveButton(_ sender: AnyObject) {

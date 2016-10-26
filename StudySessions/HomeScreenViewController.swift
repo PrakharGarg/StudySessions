@@ -13,11 +13,15 @@ import Parse
 class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Variable that holds all of the study sessions that are in the classes that the user is in.
     var studySessions = [PFObject]()
+    // Variable that holds all of the classes for the current user
+    var currentClasses = [PFObject]()
     // The TableView outlet
     @IBOutlet var tableView: UITableView!
     // Toggle to determine whether to see all sessions or just the ones you've joined
     // On = view ones you've joined
     @IBOutlet weak var toggleSessions: UIBarButtonItem!
+    
+    var class_names = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,17 +48,40 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         super.didReceiveMemoryWarning()
     }
     
-    // Function that runs a query to find all StudySessions objects that have the current user's id in it's list of students
+    // Function that runs a query to find all Courses objects that have the current user's id in it's list of students
     func findCourses() {
         let userId = (PFUser.current()?.objectId)!
-        let query = PFQuery(className:"StudySessions")
+        let query = PFQuery(className:"Courses")
         query.whereKey("students", equalTo: userId)
-        query.findObjectsInBackground { (students: [PFObject]?, error: Error?) in
+        query.findObjectsInBackground { (classes: [PFObject]?, error: Error?) in
             if error == nil {
                 // print("SWEET")
-                self.studySessions = students!
+                self.currentClasses = classes!
+                for course in self.currentClasses {
+                    self.class_names.append((course["name"])! as! String)
+                }
+                let sessionQuery = PFQuery(className: "StudySessions")
+                sessionQuery.findObjectsInBackground( block: { (sessions: [PFObject]?, error: Error?) in
+                    if error == nil {
+                        self.studySessions = sessions!
+                    }
+                })
+                
                 // Reload the page once this query is complete
                 self.tableView.reloadData()
+            }
+        }
+        filterSessions()
+    }
+    
+    func filterSessions(){
+        for session in self.studySessions {
+            if self.class_names.contains((session["course"])! as! String){
+                // keep it
+            }
+            else {
+                let index = self.studySessions.index(of: session)
+                self.studySessions.remove(at: index!)
             }
         }
     }

@@ -10,14 +10,17 @@ import UIKit
 import Parse
 
 class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    // Name textfield
     @IBOutlet var name: UITextField!
-    
+    // Description textfield
     @IBOutlet var studySessionDescription: UITextField!
-    @IBOutlet var classPicker: UIPickerView!
-
+      // Course textfield
     @IBOutlet var course: UITextField!
+    // Time textfield
     @IBOutlet var time: UITextField!
+    // Location textfield
     @IBOutlet var location: UITextField!
+    // UIPickerview
     let pickerView = UIPickerView()
     
     // Variable that holds all of the courses for the current user
@@ -25,7 +28,7 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
 
     
     @IBAction func createSession(_ sender: AnyObject) {
-
+        // Create a new study session
         let studySession = PFObject(className: "StudySessions")
         studySession["name"] = name.text
         studySession["description"] = studySessionDescription.text
@@ -37,9 +40,11 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         studySession.saveInBackground { (success: Bool, error: Error?) in
             if (success) {
                 print("YAY")
+                // Show a success alert
                 let alert = UIAlertController(title: "Success", message: String(describing: "You have created a Study Session"), preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                // Clear the fields
                 self.name.text = ""
                 self.studySessionDescription.text = ""
                 self.location.text = ""
@@ -52,22 +57,21 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         }
     }
 
-    
    override func viewDidLoad() {
         super.viewDidLoad()
+        // Set the title
         self.title = "Create a Study Session"
+        // Hide keyboard when tapping outside field
         hideKeyboardWhenTappedAround()
+        // Find all courses related to user
         findCourses()
-    
-    
+        // Init the pickerView
         pickerView.delegate = self
         course.inputView = pickerView
-    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // Find all of the courses for the current user by running a Parse query in the Courses model for the student's ID.

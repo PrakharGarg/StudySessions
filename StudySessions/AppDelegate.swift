@@ -25,21 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initialize(with: configuration)
 //        PFUser.enableAutomaticUser()
         
-        // If a User has signed in, then let them continue to the Home Screen. Else have them log in.
-        let currentUser = PFUser.current()
         
-        if currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "PageViewController")
-            
-            self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()
-            
-        }
-        else {
-            // Show the signup or login screen
-        }
-
+        
+        
+        
         return true
     }
 

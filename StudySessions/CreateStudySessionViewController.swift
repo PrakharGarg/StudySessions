@@ -98,28 +98,4 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         course.text = courses[row]["name"] as! String?
     }
-    
-    
-    
-    
-    
-// SAMPLE CREATE SESSION QUERY
-    func createSesh(){
-    var studySession = PFObject(className: "StudySessions")
-    studySession["name"] = "Test #2"
-    studySession["description"] = "foo"
-    studySession["location"] = "PCL 3.12"
-    studySession["course"] = "CS439"
-    studySession["time"] = "5:30pm"
-    studySession["students"] = ["SjestbPm0z"]
-    
-    studySession.saveInBackground { (success: Bool, error: Error?) in
-        if (success) {
-            print("YAY")
-        } else {
-        // There was a problem, check error.description
-        }
-    }
-    }
-    
 }

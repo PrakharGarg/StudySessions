@@ -48,7 +48,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         super.didReceiveMemoryWarning()
     }
     
-    // Function that runs a query to find all Courses objects that have the current user's id in it's list of students
+    // Function that runs a query to find all Courses objects that have the current user's id in it's list of students.
+    // After we find all of the student's courses, we find all study sessions and filter them by the classes that the user is a part of.
     func findCourses() {
         let userId = (PFUser.current()?.objectId)!
         let query = PFQuery(className:"Courses")
@@ -57,23 +58,25 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             if error == nil {
                 // print("SWEET")
                 self.currentClasses = classes!
+                // Create an array of all of the class names that the student is a part of.
                 for course in self.currentClasses {
                     self.class_names.append((course["name"])! as! String)
                 }
+                // Run a new query to find all study sessions.
                 let sessionQuery = PFQuery(className: "StudySessions")
                 sessionQuery.findObjectsInBackground( block: { (sessions: [PFObject]?, error: Error?) in
                     if error == nil {
                         self.studySessions = sessions!
                     }
                 })
-                
                 // Reload the page once this query is complete
                 self.tableView.reloadData()
             }
         }
+        // Filter the study sessions to only show the ones that are in the classes that the user is in.
         filterSessions()
     }
-    
+    // Filter out study sessions that the user is not interested in.
     func filterSessions(){
         for session in self.studySessions {
             if self.class_names.contains((session["course"])! as! String){

@@ -69,6 +69,10 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         pickerView.delegate = self
         course.inputView = pickerView
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        findCourses()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

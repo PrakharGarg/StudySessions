@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudySessions/MyClassesViewController.swift"
-            timestampString = "498877570.887759"
+            timestampString = "499288591.353289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "refresh(refreshControl:)"
             landmarkType = "7">
          </BreakpointContent>

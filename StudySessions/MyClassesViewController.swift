@@ -28,6 +28,11 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
     }
+    
+    // Refresh on View
+    override func viewWillAppear(_ animated: Bool) {
+        findCourses()
+    }
     // Refresh function
     func refresh(refreshControl: UIRefreshControl) {
         findCourses()

@@ -17,6 +17,10 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // allow user to delete a course
+        navigationItem.leftBarButtonItem = editButtonItem
+        
         // Hide the keyboard
         hideKeyboardWhenTappedAround()
         // Set the title of the view controller
@@ -65,6 +69,26 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.courseLabel.text = (course["name"]) as? String
         
         return cell
+    }
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("delete")
+            courses.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            print("add???")
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.tableView.setEditing(editing, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {

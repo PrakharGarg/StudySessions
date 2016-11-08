@@ -19,12 +19,16 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     // Toggle to determine whether to see all sessions or just the ones you've joined
     // On = view ones you've joined
-    @IBOutlet weak var toggleSessions: UIBarButtonItem!
+    @IBOutlet var studySessionToggle: UISwitch!
     
     var class_names = [String]()
     
+    @IBAction func toggleChanged(_ sender: Any) {
+        findCourses()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Set the title of the page
         self.title = "Study Sessions"
         // Make a refresh controller for when users pull down on the table. This refresehes the data
@@ -78,9 +82,20 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     // Filter out study sessions that the user is not interested in.
     func filterSessions(){
+        let userId = (PFUser.current()?.objectId)!
         for session in self.studySessions {
             if self.class_names.contains((session["course"])! as! String){
                 // keep it
+                // If the toggle is turned on, only get the sessions that the user is a part of. 
+                if studySessionToggle.isOn {
+                    if (session["students"] as! Array).contains(userId){
+                        // keep it
+                    }
+                    else {
+                        let index = self.studySessions.index(of: session)
+                        self.studySessions.remove(at: index!)
+                    }
+                }
             }
             else {
                 let index = self.studySessions.index(of: session)

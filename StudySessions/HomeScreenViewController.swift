@@ -81,7 +81,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     // Filter out study sessions that the user is not interested in.
     func filterSessions(){
         let userId = (PFUser.current()?.objectId)!
-        for session in self.studySessions {
+        for session in studySessions {
+            
             if self.class_names.contains((session["course"])! as! String){
                 // keep it
                 // If the toggle is turned on, only get the sessions that the user is a part of. 
@@ -108,6 +109,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let backItem = UIBarButtonItem()
         backItem.title = "Home"
         navigationItem.backBarButtonItem = backItem
+        
+        
     }
     
     
@@ -125,9 +128,22 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath) as! StudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
         
+        cell.studySession = [studySession]
+        
         cell.title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
         cell.className.text = (studySession["course"] as! String?)!
-                
+
+        let userId = (PFUser.current()?.objectId)!
+        
+        // If the user is already in the study session, make the button an arrow. Else make it a join button
+        if (studySession["students"] as! Array).contains(userId) {
+            cell.studySessionButtonLabel.setTitle("->", for: .normal)
+            
+        }
+        else {
+            cell.studySessionButtonLabel.setTitle("Join", for: .normal)
+        }
+
         return cell
     }
     
@@ -178,5 +194,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
     }
+    
+    
     
 }

@@ -117,23 +117,32 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ek1-wr-eoD" id="Ozg-Mk-MAb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gG5-23-xKB">
-                                                    <rect key="frame" x="18" y="28.5" width="42" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.6405078125" green="0.6405078125" blue="0.6405078125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrs-hJ-T6T">
                                                     <rect key="frame" x="18" y="8" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                     <color key="textColor" red="0.11236440390348434" green="0.52078557014465332" blue="0.99853390455245972" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gG5-23-xKB">
+                                                    <rect key="frame" x="18" y="29" width="42" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.6405078125" green="0.6405078125" blue="0.6405078125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="863-qS-HLn">
+                                                    <rect key="frame" x="321" y="6" width="46" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="studySessionButton:" destination="Ek1-wr-eoD" eventType="touchUpInside" id="AoB-yE-WPg"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="863-qS-HLn" firstAttribute="trailing" secondItem="Ozg-Mk-MAb" secondAttribute="trailingMargin" id="6m5-z4-WQI"/>
+                                                <constraint firstItem="863-qS-HLn" firstAttribute="centerY" secondItem="Ozg-Mk-MAb" secondAttribute="centerY" id="8kB-WI-Laf"/>
                                                 <constraint firstItem="yrs-hJ-T6T" firstAttribute="leading" secondItem="Ozg-Mk-MAb" secondAttribute="leadingMargin" constant="10" id="CGw-gv-wRc"/>
                                                 <constraint firstItem="yrs-hJ-T6T" firstAttribute="top" secondItem="Ozg-Mk-MAb" secondAttribute="top" constant="8" id="OQl-wM-0Q1"/>
                                                 <constraint firstAttribute="bottom" secondItem="gG5-23-xKB" secondAttribute="bottom" id="QoB-eh-8sV"/>
@@ -142,8 +151,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="className" destination="gG5-23-xKB" id="KyJ-rd-qlh"/>
-                                            <outlet property="title_time" destination="yrs-hJ-T6T" id="g4T-Lx-Q4M"/>
+                                            <outlet property="className" destination="gG5-23-xKB" id="qH6-qP-zzy"/>
+                                            <outlet property="studySessionButtonLabel" destination="863-qS-HLn" id="hbQ-t2-bia"/>
+                                            <outlet property="title_time" destination="yrs-hJ-T6T" id="zA9-I6-Y7c"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

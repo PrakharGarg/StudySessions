@@ -41,9 +41,12 @@ class StudySessionTableViewCell: UITableViewCell, UIPopoverPresentationControlle
                     let tempSession = session?.first
                     // Add the current student to the Study Session model.
                     tempSession?.addUniqueObjects(from: [self.userId], forKey: "students")
-                    tempSession?.saveInBackground()
-                    
-                    (self.superview?.superview as! UITableView).reloadData()
+                    tempSession?.saveInBackground(block: { (done: Bool, error: Error?) in
+                        if error == nil {
+                            self.studySessionButtonLabel.titleLabel?.text = "->"
+                        }
+
+                    })
                     
                 }
             }

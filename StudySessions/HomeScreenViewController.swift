@@ -114,7 +114,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             let s_s = sender as! PFObject
             let destination = segue.destination
             // NAREEN WE NEED TO MAKE A CLASS ATTRIBUTE IN YOUR VIEW CONTROLLER THAT THIS SEGUES TO WITH THE NAME studySession THAT WILL HOLD THE SESSION
-            destination.studySession = ss
+            destination.studySession = s_s
         }
         
     }

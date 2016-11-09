@@ -109,10 +109,15 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let backItem = UIBarButtonItem()
         backItem.title = "Home"
         navigationItem.backBarButtonItem = backItem
-        
+        // Called when the -> is pressed.
+        if segue.identifier == "NAREEN CHANGE THIS" {
+            let s_s = sender as! PFObject
+            let destination = segue.destination
+            // NAREEN WE NEED TO MAKE A CLASS ATTRIBUTE IN YOUR VIEW CONTROLLER THAT THIS SEGUES TO WITH THE NAME studySession THAT WILL HOLD THE SESSION
+            destination.studySession = s_s
+        }
         
     }
-    
     
      func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -127,6 +132,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath) as! StudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
+
+        cell.delegate = self
         
         cell.studySession = [studySession]
         
@@ -198,3 +205,13 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
 }
+// function that gets called when someone presses the -> button
+extension HomeScreenViewController: StudySessionTableViewCellDelegate {
+    func goToSession(with cell: StudySessionTableViewCell) {
+        let indexPath = tableView.indexPath(for: cell)!
+        let s_s = studySessions[indexPath.row]
+        performSegue(withIdentifier: "NAREEN CHANGE THIS", sender: s_s)
+    }
+    
+}
+

@@ -28,17 +28,17 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set the title of the page
         self.title = "Study Sessions"
         // Make a refresh controller for when users pull down on the table. This refresehes the data
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
+        // Find all study sessions when the page is loaded.
+        findCourses()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         // Find all of the courses that we need to display
         findCourses()
     }
@@ -71,14 +71,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                 sessionQuery.findObjectsInBackground( block: { (sessions: [PFObject]?, error: Error?) in
                     if error == nil {
                         self.studySessions = sessions!
+                        // Filter the study sessions to only show the ones that are in the classes that the user is in.
+                        self.filterSessions()
                     }
                 })
-                // Reload the page once this query is complete
-                self.tableView.reloadData()
             }
         }
-        // Filter the study sessions to only show the ones that are in the classes that the user is in.
-        filterSessions()
     }
     // Filter out study sessions that the user is not interested in.
     func filterSessions(){
@@ -97,11 +95,13 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 }
             }
+            // Remove all study sessions that are in classes that the user is not a part of.
             else {
                 let index = self.studySessions.index(of: session)
                 self.studySessions.remove(at: index!)
             }
         }
+        self.tableView.reloadData()
     }
     // Override the back button for the settings page to "Home" since the current title is too long
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -109,6 +109,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         backItem.title = "Home"
         navigationItem.backBarButtonItem = backItem
     }
+    
     
      func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -121,11 +122,61 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     // Create cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath) as! StudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
-        cell.textLabel?.text = studySession["name"] as! String?
-        cell.detailTextLabel?.text = studySession["course"] as! String?
         
+        cell.title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
+        cell.className.text = (studySession["course"] as! String?)!
+                
         return cell
     }
+    
+    // Bool to track if a cell is being interacted with
+    var thereIsCellTapped = false
+    // Default value we will use to check.
+    var selectedRowIndex = -1
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Expand tapped rows and return untapped cells to normal height
+        if indexPath.row == selectedRowIndex && thereIsCellTapped {
+            return 120
+        }
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! StudySessionTableViewCell
+        let studySession = studySessions[indexPath.row]
+        // Set the number of lines for a tapped cell
+        cell.title_time.numberOfLines = 5
+        // If a cell has been untapped, we want to reset it to its defaults
+        if self.selectedRowIndex != -1 {
+            (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! StudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
+        }
+        // If a cell has been tapped, show the extra info.
+        if selectedRowIndex != indexPath.row {
+            self.thereIsCellTapped = true
+            self.selectedRowIndex = indexPath.row
+            
+            let description = "Description: " + (studySession["description"] as! String?)!
+            let location = "Location: " + (studySession["location"] as! String?)!
+            
+            cell.title_time.text = (cell.title_time.text! + "\n\n" + description + "\n" + location + "\n")
+            cell.title_time.numberOfLines = 5
+        }
+        // All other cells should be default.
+        else {
+            self.thereIsCellTapped = false
+            self.selectedRowIndex = -1
+            cell.title_time.numberOfLines = 1
+            cell.title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            
+        }
+        // Update the table
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
+    
 }

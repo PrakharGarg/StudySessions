@@ -113,29 +113,38 @@
                                 <rect key="frame" x="0.0" y="41" width="375" height="582"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studySessionsCell" textLabel="Rv9-VL-qdu" detailTextLabel="MTF-6v-NLz" style="IBUITableViewCellStyleValue1" id="Ek1-wr-eoD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studySessionsCell" id="Ek1-wr-eoD" customClass="StudySessionTableViewCell" customModule="StudySessions" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ek1-wr-eoD" id="Ozg-Mk-MAb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rv9-VL-qdu">
-                                                    <rect key="frame" x="15" y="11" width="34" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gG5-23-xKB">
+                                                    <rect key="frame" x="18" y="28.5" width="42" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.6405078125" green="0.6405078125" blue="0.6405078125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MTF-6v-NLz">
-                                                    <rect key="frame" x="316" y="11" width="44" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrs-hJ-T6T">
+                                                    <rect key="frame" x="18" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                    <color key="textColor" red="0.11236440390348434" green="0.52078557014465332" blue="0.99853390455245972" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yrs-hJ-T6T" firstAttribute="leading" secondItem="Ozg-Mk-MAb" secondAttribute="leadingMargin" constant="10" id="CGw-gv-wRc"/>
+                                                <constraint firstItem="yrs-hJ-T6T" firstAttribute="top" secondItem="Ozg-Mk-MAb" secondAttribute="top" constant="8" id="OQl-wM-0Q1"/>
+                                                <constraint firstAttribute="bottom" secondItem="gG5-23-xKB" secondAttribute="bottom" id="QoB-eh-8sV"/>
+                                                <constraint firstItem="yrs-hJ-T6T" firstAttribute="leading" secondItem="gG5-23-xKB" secondAttribute="leading" id="Uf4-or-gpq"/>
+                                                <constraint firstItem="yrs-hJ-T6T" firstAttribute="trailing" secondItem="gG5-23-xKB" secondAttribute="trailing" id="Yyd-4r-NGb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="className" destination="gG5-23-xKB" id="KyJ-rd-qlh"/>
+                                            <outlet property="title_time" destination="yrs-hJ-T6T" id="g4T-Lx-Q4M"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -144,7 +153,7 @@
                                     <outlet property="delegate" destination="EaP-1Z-1Qg" id="XLG-2l-lxY"/>
                                 </connections>
                             </tableView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arU-fs-ySd">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="arU-fs-ySd">
                                 <rect key="frame" x="310" y="72" width="51" height="31"/>
                                 <connections>
                                     <action selector="toggleChanged:" destination="EaP-1Z-1Qg" eventType="valueChanged" id="bTS-Fz-Bto"/>
@@ -304,6 +313,39 @@
                 <exit id="tw4-hG-Ade" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3292" y="644.52773613193403"/>
+        </scene>
+        <!--Class Detail View Controller-->
+        <scene sceneID="5mT-Wv-VXp">
+            <objects>
+                <viewController id="9j7-kJ-Lkz" customClass="classDetailViewController" customModule="StudySessions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vSM-wS-pr0"/>
+                        <viewControllerLayoutGuide type="bottom" id="rzd-Ip-07Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ge6-lT-zMz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HELLO" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xFy-JA-mXF">
+                                <rect key="frame" x="139" y="318" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="Pbp-gu-y90"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xFy-JA-mXF" firstAttribute="centerY" secondItem="Ge6-lT-zMz" secondAttribute="centerY" id="EVL-eS-plg"/>
+                            <constraint firstItem="xFy-JA-mXF" firstAttribute="centerX" secondItem="Ge6-lT-zMz" secondAttribute="centerX" id="cDy-Gw-1I2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tRX-Zz-cLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3029" y="-938"/>
         </scene>
         <!--Create Study Session-->
         <scene sceneID="eXj-0d-ZWR">

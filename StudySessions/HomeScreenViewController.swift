@@ -111,7 +111,9 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationItem.backBarButtonItem = backItem
         // Called when the -> is pressed.
         if segue.identifier == "showStudySessionDetail" {
-            let s_s = sender as! PFObject
+            let indexPath = tableView.indexPathForSelectedRow
+            let currentCell = tableView.cellForRow(at: indexPath!) as! StudySessionTableViewCell
+            let s_s = currentCell.studySession.first
             let destination = segue.destination as! StudySessionDetailViewController
             destination.studySession = s_s
         }
@@ -132,7 +134,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath) as! StudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
 
-        cell.delegate = self
+        //cell.delegate = self
         
         cell.studySession = [studySession]
         
@@ -205,12 +207,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
 }
 // function that gets called when someone presses the -> button
-extension HomeScreenViewController: StudySessionTableViewCellDelegate {
+/*extension HomeScreenViewController: StudySessionTableViewCellDelegate {
     func goToSession(with cell: StudySessionTableViewCell) {
         let indexPath = tableView.indexPath(for: cell)!
         let s_s = studySessions[indexPath.row]
         performSegue(withIdentifier: "showStudySessionDetail", sender: s_s)
     }
     
-}
+}*/
 

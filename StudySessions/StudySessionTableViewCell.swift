@@ -29,7 +29,7 @@ class StudySessionTableViewCell: UITableViewCell, UIPopoverPresentationControlle
     
     // When the user clicks on the button
     @IBAction func studySessionButton(_ sender: Any) {
-        // If the user hasn't joined the class, let them join
+/*        // If the user hasn't joined the class, let them join
         if studySessionButtonLabel.titleLabel?.text == "Join" {
             
             let study_session = studySession.first!
@@ -53,11 +53,11 @@ class StudySessionTableViewCell: UITableViewCell, UIPopoverPresentationControlle
 
         } else {
             delegate?.goToSession(with: self)
-        }
+        //}
         // The button == -> and we need to segue to the Study Session page.
-        
+     */
     }
-    
+ 
     
     override func awakeFromNib() {
         super.awakeFromNib()

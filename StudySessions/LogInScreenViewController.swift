@@ -16,6 +16,9 @@ class LogInScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isTranslucent = true
+        // Set the title
+        self.title = "Log In"
         // Set all of the fields to be empty
         if PFUser.current() != nil {
             let user = PFUser.current()

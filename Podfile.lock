@@ -1,15 +1,18 @@
 PODS:
   - Bolts/Tasks (1.8.4)
+  - LayerKit (0.23.3)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
 
 DEPENDENCIES:
+  - LayerKit
   - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  LayerKit: 128b3b0c036422458d621f81f36e6b42d372feba
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
 
-PODFILE CHECKSUM: edc142159bbc21db86c5a3e778d6e3a7365c3675
+PODFILE CHECKSUM: bfec38632baf2d47f86b8e320400832ddd98576f
 
-COCOAPODS: 1.1.0.rc.3
+COCOAPODS: 1.1.1

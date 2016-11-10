@@ -135,6 +135,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath) as! StudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
 
+        cell.studySessionButtonLabel.isHidden = true
+        
         //cell.delegate = self
         
         cell.studySession = [studySession]
@@ -143,6 +145,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.className.text = (studySession["course"] as! String?)!
 
         let userId = (PFUser.current()?.objectId)!
+        
+        cell.studySessionButtonLabel.isHidden = true
         
         // If the user is already in the study session, make the button an arrow. Else make it a join button
         if (studySession["students"] as! Array).contains(userId) {
@@ -172,11 +176,13 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! StudySessionTableViewCell
+        cell.studySessionButtonLabel.isHidden = false
         let studySession = studySessions[indexPath.row]
         // Set the number of lines for a tapped cell
         cell.title_time.numberOfLines = 5
         // If a cell has been untapped, we want to reset it to its defaults
         if self.selectedRowIndex != -1 {
+            cell.studySessionButtonLabel.isHidden = true
             (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! StudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
         }
         // If a cell has been tapped, show the extra info.

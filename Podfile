@@ -6,5 +6,7 @@ target 'StudySessions' do
   use_frameworks!
 
   pod ‘Parse’
+  
+  pod 'LayerKit'
 
 end

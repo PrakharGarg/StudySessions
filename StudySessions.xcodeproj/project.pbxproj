@@ -25,6 +25,8 @@
 		1CE538C21DB678630039B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538C01DB678630039B4A2 /* LaunchScreen.storyboard */; };
 		B4B25DA9529617E7A9CCA70D /* Pods_StudySessions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */; };
 		D671A3CC1DBFF90F008DCE99 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671A3CB1DBFF90F008DCE99 /* CourseDetailViewController.swift */; };
+		EB694CD81DD4C30200AB8AC1 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB694CD71DD4C30200AB8AC1 /* ChatTableViewCell.swift */; };
+		EB694CDA1DD4C55A00AB8AC1 /* ChatRoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB694CD91DD4C55A00AB8AC1 /* ChatRoomTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		2ADBBCD5C92527EB4B6EBCE5 /* Pods-StudySessions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudySessions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudySessions/Pods-StudySessions.debug.xcconfig"; sourceTree = "<group>"; };
 		66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudySessions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D671A3CB1DBFF90F008DCE99 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
+		EB694CD71DD4C30200AB8AC1 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		EB694CD91DD4C55A00AB8AC1 /* ChatRoomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +90,10 @@
 			isa = PBXGroup;
 			children = (
 				1CE06B5C1DB85807006B95DE /* HomeScreenViewController.swift */,
+				EB694CD91DD4C55A00AB8AC1 /* ChatRoomTableViewController.swift */,
 				1CE538B31DB678620039B4A2 /* AppDelegate.swift */,
 				1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */,
+				EB694CD71DD4C30200AB8AC1 /* ChatTableViewCell.swift */,
 				1CE538BB1DB678620039B4A2 /* Main.storyboard */,
 				1C87719F1DD27F6F001146EC /* StudySessionTableViewCell.swift */,
 				1C87719D1DD258CA001146EC /* StudySessionDetailViewController.swift */,
@@ -248,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB694CDA1DD4C55A00AB8AC1 /* ChatRoomTableViewController.swift in Sources */,
 				1CE538B41DB678620039B4A2 /* AppDelegate.swift in Sources */,
 				1CA624FA1DB6C24A00F4E07B /* SettingsScreenViewController.swift in Sources */,
 				1CC886C01DB6AA09007F5E62 /* PageViewController.swift in Sources */,
@@ -260,6 +267,7 @@
 				1CE06B5B1DB85697006B95DE /* keyboardDissapear.swift in Sources */,
 				1C069BD21DC051CD008E3AE8 /* AddClassesViewController.swift in Sources */,
 				1C6C30A41DBC6C960093C18A /* CoursesTableViewCell.swift in Sources */,
+				EB694CD81DD4C30200AB8AC1 /* ChatTableViewCell.swift in Sources */,
 				1CE06B5D1DB85807006B95DE /* HomeScreenViewController.swift in Sources */,
 				1C87719E1DD258CA001146EC /* StudySessionDetailViewController.swift in Sources */,
 			);

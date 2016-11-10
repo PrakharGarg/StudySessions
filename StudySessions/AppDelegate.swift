@@ -9,12 +9,14 @@
 import UIKit
 import Parse
 import Bolts
+import LayerKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var layerClient: LYRClient?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Config Keys for Parse server
@@ -23,7 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.server = "https://group2-ios-project.herokuapp.com/parse"
         }
         Parse.initialize(with: configuration)
-        
+        //config for parse
+        let LayerAppIDString: NSURL! = NSURL(string: "layer:///apps/staging/7fb2dc96-a75c-11e6-bfe9-455cd2013b06")
+        layerClient = LYRClient(appID: LayerAppIDString as URL)
         class ClearNavigationBar: UINavigationBar {}
         ClearNavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 

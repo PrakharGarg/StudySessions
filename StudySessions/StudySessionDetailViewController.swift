@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Parse
 
-class studySessionDetailViewController: UIViewController {
+class StudySessionDetailViewController: UIViewController {
 
+    var studySession: PFObject!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

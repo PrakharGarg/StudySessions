@@ -110,12 +110,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         backItem.title = "Home"
         navigationItem.backBarButtonItem = backItem
         // Called when the -> is pressed.
-//        if segue.identifier == "NAREEN CHANGE THIS" {
-//            let s_s = sender as! PFObject
-//            let destination = segue.destination
-//            // NAREEN WE NEED TO MAKE A CLASS ATTRIBUTE IN YOUR VIEW CONTROLLER THAT THIS SEGUES TO WITH THE NAME studySession THAT WILL HOLD THE SESSION
-//            destination.studySession = s_s
-//        }
+        if segue.identifier == "showStudySessionDetail" {
+            let s_s = sender as! PFObject
+            let destination = segue.destination as! StudySessionDetailViewController
+            destination.studySession = s_s
+        }
         
     }
     
@@ -210,7 +209,7 @@ extension HomeScreenViewController: StudySessionTableViewCellDelegate {
     func goToSession(with cell: StudySessionTableViewCell) {
         let indexPath = tableView.indexPath(for: cell)!
         let s_s = studySessions[indexPath.row]
-//        performSegue(withIdentifier: "NAREEN CHANGE THIS", sender: s_s)
+        performSegue(withIdentifier: "showStudySessionDetail", sender: s_s)
     }
     
 }

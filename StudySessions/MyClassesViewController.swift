@@ -72,7 +72,7 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("delete")
             courses.remove(at: indexPath.row)

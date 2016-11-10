@@ -10,9 +10,10 @@ import Parse
 
 // This view controller is the main View that users will see when the launch the app.
 // This view is hooked up to a Navigation Controller
-class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     // Variable that holds all of the study sessions that are in the classes that the user is in.
     var studySessions = [PFObject]()
+    var filteredSessions = [PFObject]()
     // Variable that holds all of the classes for the current user
     var currentClasses = [PFObject]()
     // The TableView outlet
@@ -20,6 +21,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     // Toggle to determine whether to see all sessions or just the ones you've joined
     // On = view ones you've joined
     @IBOutlet weak var toggleSessions: UIBarButtonItem!
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     var class_names = [String]()
     
@@ -31,6 +34,16 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
+        
+        //search controller settings
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        //search bar visual settings
+        searchController.searchBar.placeholder = "Search for a study session"
+        searchController.searchBar.showsCancelButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +55,21 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func refresh(refreshControl: UIRefreshControl) {
         findCourses()
         refreshControl.endRefreshing()
+    }
+    
+    //search function
+    func updateSearchResults(for searchController: UISearchController)
+    {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+    func filterContentForSearchText(searchText: String, scope: String = "All")
+    {
+        filteredSessions = studySessions.filter
+            { course in
+                return (((course["name"]) as AnyObject).lowercased).contains(searchText.lowercased())
+        }
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,18 +124,28 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of total study sessions in the array
-        return self.studySessions.count
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return self.filteredSessions.count
+        }
+        else {
+            return self.studySessions.count
+        }
     }
     // Create cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath)
-        let studySession = studySessions[indexPath.row]
+        let studySession:PFObject
+        if searchController.isActive && searchController.searchBar.text != "" {
+            studySession = filteredSessions[indexPath.row]
+        }
+        else {
+            studySession = studySessions[indexPath.row]
+        }
         cell.textLabel?.text = studySession["name"] as! String?
         cell.detailTextLabel?.text = studySession["course"] as! String?
         

@@ -116,6 +116,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             let s_s = currentCell.studySession.first
             let destination = segue.destination as! StudySessionDetailViewController
             destination.studySession = s_s
+            destination.title = s_s?["name"] as? String
         }
         
     }

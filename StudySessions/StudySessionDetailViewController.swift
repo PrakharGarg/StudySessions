@@ -8,7 +8,7 @@
 
 import UIKit
 
-class studySessionDetailViewController: UIViewController {
+class StudySessionDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

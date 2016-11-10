@@ -31,6 +31,9 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
+        
+        self.tableView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+//        self.tableView.autoresizingMask = UIViewAutoresizing.flexibleHeight
     }
     
     // Refresh on View
@@ -71,21 +74,38 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
-    // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+     // Override to support editing the table view.
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+     {
+        print("commit editingstyle")
+         if editingStyle == .delete
+         {
             print("delete")
-            courses.remove(at: indexPath.row)
+            // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            print("add???")
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
+         }
+     }
+    
+//    // Override to support editing the table view.
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            print("delete")
+//            courses.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        } else if editingStyle == .insert {
+//            print("add???")
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+//        }
+//    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
+    {
+        return UITableViewCellEditingStyle.delete
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
+    //makes edit buttons show up
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.tableView.setEditing(editing, animated: animated)

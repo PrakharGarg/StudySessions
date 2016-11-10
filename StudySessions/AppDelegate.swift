@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.server = "https://group2-ios-project.herokuapp.com/parse"
         }
         Parse.initialize(with: configuration)
+        
+        class ClearNavigationBar: UINavigationBar {}
+        ClearNavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 
         return true
     }

@@ -18,6 +18,7 @@ class SignUpScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        self.navigationController?.navigationBar.isTranslucent = true
 
         
     }

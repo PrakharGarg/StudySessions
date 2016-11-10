@@ -112,9 +112,9 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         // Called when the -> is pressed.
         if segue.identifier == "showStudySession" {
             let s_s = sender as! PFObject
-            let destination = segue.destination
+            let destination = segue.destination as! StudySessionDetailViewController
             // NAREEN WE NEED TO MAKE A CLASS ATTRIBUTE IN YOUR VIEW CONTROLLER THAT THIS SEGUES TO WITH THE NAME studySession THAT WILL HOLD THE SESSION
-//            destination.studySession = s_s
+            destination.studySession = s_s
         }
         
     }

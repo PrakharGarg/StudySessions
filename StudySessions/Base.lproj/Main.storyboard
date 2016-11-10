@@ -476,6 +476,13 @@
                             <constraint firstItem="4TI-S1-1qp" firstAttribute="leading" secondItem="Fra-ti-VEE" secondAttribute="leading" id="yYK-in-zUN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="course" destination="rfS-gT-4BX" id="qwe-MZ-KxQ"/>
+                        <outlet property="dateAndTime" destination="E02-u2-6GO" id="uuw-Qv-6sA"/>
+                        <outlet property="descriptionBox" destination="4TI-S1-1qp" id="ivb-On-HKH"/>
+                        <outlet property="location" destination="UAT-Vb-BBH" id="e65-O1-EZF"/>
+                        <outlet property="people" destination="Xd7-3P-8qd" id="MWH-Ml-VRc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adi-bI-cjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,39 +11,24 @@ import Parse
 
 class StudySessionDetailViewController: UIViewController {
     
-    var studySession: PFObject!
+    @IBOutlet var dateAndTime: UILabel!
+    @IBOutlet var location: UILabel!
+    @IBOutlet var course: UILabel!
+    @IBOutlet var descriptionBox: UILabel!
+    @IBOutlet var people: UILabel!
     
+    
+    
+    var studySession: PFObject!
+
     
     var peopleInStudySession = [PFObject]()
     var people_names = [String]()
     let userId = (PFUser.current()?.objectId)!
     
-    @IBOutlet var joinBtn: UIButton!
     
-    @IBAction func joinStudySession(_ sender: AnyObject) {
-        
-        let query = PFQuery(className:"StudySessions")
-        query.whereKey("objectId", equalTo: (studySession.objectId)!)
-        query.findObjectsInBackground { (session: [PFObject]?, error: Error?) in
-            if error == nil {
-                let tempSession = session?.first
-                // Add the current student to the Study Session model.
-                tempSession?.addUniqueObjects(from: [self.userId], forKey: "students")
-                tempSession?.saveInBackground(block: { (done: Bool, error: Error?) in
-                    if error == nil {
-                        let joinBtn = sender as! UIButton
-                        joinBtn.isEnabled = false
-                        joinBtn.setTitle("Joined", for: .disabled)
-                        
-                    }
-                    
-                })
-                
-            }
-        }
-        
-    }
-    override func viewDidLoad() {
+    
+      override func viewDidLoad() {
         super.viewDidLoad()
         viewSetup()
         
@@ -60,19 +45,12 @@ class StudySessionDetailViewController: UIViewController {
         location.text = studySession?["location"] as? String
         course.text = studySession?["course"] as? String
         descriptionBox.text = studySession?["description"] as? String
-        people.text = getPeople(peopleArray: studySession?["students"] as! Array<String>)
+//        let peopleArray = getPeople()
+//        people.text = getPeople()
         
-        if (studySession["students"] as! Array).contains(userId) {
-            joinBtn.isEnabled = false
-            joinBtn.setTitle("Joined", for: .disabled)
-            
-        }
-        else {
-            joinBtn.setTitle("Join", for: .normal)
-        }
     }
     
-    func getPeople(peopleArray: Array<String>) -> String {
+    func getPeople() {
         //for each string in array find persons name
         /*var people_names = Array<String>()
          let query = PFQuery(className:"User")
@@ -85,7 +63,9 @@ class StudySessionDetailViewController: UIViewController {
          }
          }
          return people_names.joined(separator: ",")*/
-        return peopleArray.joined(separator: ", ")
+        
+//        let query = 
+//        return peopleArray.joined(separator: ", ")
     }
     
 }

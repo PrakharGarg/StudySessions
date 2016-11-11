@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1C069BD21DC051CD008E3AE8 /* AddClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C069BD11DC051CD008E3AE8 /* AddClassesViewController.swift */; };
 		1C6C30A41DBC6C960093C18A /* CoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6C30A31DBC6C960093C18A /* CoursesTableViewCell.swift */; };
+		1C7C3E611DD5553A00B326A3 /* ViewFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7C3E601DD5553A00B326A3 /* ViewFileTableViewCell.swift */; };
+		1C7C3E631DD555B300B326A3 /* ViewFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7C3E621DD555B300B326A3 /* ViewFilesViewController.swift */; };
 		1C87719E1DD258CA001146EC /* StudySessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C87719D1DD258CA001146EC /* StudySessionDetailViewController.swift */; };
 		1C8771A01DD27F6F001146EC /* StudySessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C87719F1DD27F6F001146EC /* StudySessionTableViewCell.swift */; };
 		1CA624F61DB6BAEA00F4E07B /* CreateStudySessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA624F51DB6BAEA00F4E07B /* CreateStudySessionViewController.swift */; };
@@ -24,13 +26,14 @@
 		1CE538BF1DB678630039B4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538BE1DB678630039B4A2 /* Assets.xcassets */; };
 		1CE538C21DB678630039B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538C01DB678630039B4A2 /* LaunchScreen.storyboard */; };
 		B4B25DA9529617E7A9CCA70D /* Pods_StudySessions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */; };
-		D671A3CC1DBFF90F008DCE99 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671A3CB1DBFF90F008DCE99 /* CourseDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18009C89CAE399EA738014B2 /* Pods-StudySessions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudySessions.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudySessions/Pods-StudySessions.release.xcconfig"; sourceTree = "<group>"; };
 		1C069BD11DC051CD008E3AE8 /* AddClassesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClassesViewController.swift; sourceTree = "<group>"; };
 		1C6C30A31DBC6C960093C18A /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
+		1C7C3E601DD5553A00B326A3 /* ViewFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFileTableViewCell.swift; sourceTree = "<group>"; };
+		1C7C3E621DD555B300B326A3 /* ViewFilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFilesViewController.swift; sourceTree = "<group>"; };
 		1C87719D1DD258CA001146EC /* StudySessionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudySessionDetailViewController.swift; sourceTree = "<group>"; };
 		1C87719F1DD27F6F001146EC /* StudySessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudySessionTableViewCell.swift; sourceTree = "<group>"; };
 		1CA624F51DB6BAEA00F4E07B /* CreateStudySessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudySessionViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +52,6 @@
 		1CE538C31DB678630039B4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ADBBCD5C92527EB4B6EBCE5 /* Pods-StudySessions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudySessions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudySessions/Pods-StudySessions.debug.xcconfig"; sourceTree = "<group>"; };
 		66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudySessions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D671A3CB1DBFF90F008DCE99 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,10 +92,11 @@
 				1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */,
 				1CE538BB1DB678620039B4A2 /* Main.storyboard */,
 				1C87719F1DD27F6F001146EC /* StudySessionTableViewCell.swift */,
+				1C7C3E601DD5553A00B326A3 /* ViewFileTableViewCell.swift */,
 				1C87719D1DD258CA001146EC /* StudySessionDetailViewController.swift */,
 				1C069BD11DC051CD008E3AE8 /* AddClassesViewController.swift */,
+				1C7C3E621DD555B300B326A3 /* ViewFilesViewController.swift */,
 				1C6C30A31DBC6C960093C18A /* CoursesTableViewCell.swift */,
-				D671A3CB1DBFF90F008DCE99 /* CourseDetailViewController.swift */,
 				1CE06B5A1DB85697006B95DE /* keyboardDissapear.swift */,
 				1CA624F91DB6C24A00F4E07B /* SettingsScreenViewController.swift */,
 				1CA624F71DB6C00700F4E07B /* MyClassesViewController.swift */,
@@ -251,8 +254,8 @@
 				1CE538B41DB678620039B4A2 /* AppDelegate.swift in Sources */,
 				1CA624FA1DB6C24A00F4E07B /* SettingsScreenViewController.swift in Sources */,
 				1CC886C01DB6AA09007F5E62 /* PageViewController.swift in Sources */,
-				D671A3CC1DBFF90F008DCE99 /* CourseDetailViewController.swift in Sources */,
 				1CD1A3FB1DB6899900F68C35 /* SignUpScreenViewController.swift in Sources */,
+				1C7C3E631DD555B300B326A3 /* ViewFilesViewController.swift in Sources */,
 				1CD828FD1DB67B38005F3A66 /* LogInScreenViewController.swift in Sources */,
 				1C8771A01DD27F6F001146EC /* StudySessionTableViewCell.swift in Sources */,
 				1CA624F81DB6C00700F4E07B /* MyClassesViewController.swift in Sources */,
@@ -261,6 +264,7 @@
 				1C069BD21DC051CD008E3AE8 /* AddClassesViewController.swift in Sources */,
 				1C6C30A41DBC6C960093C18A /* CoursesTableViewCell.swift in Sources */,
 				1CE06B5D1DB85807006B95DE /* HomeScreenViewController.swift in Sources */,
+				1C7C3E611DD5553A00B326A3 /* ViewFileTableViewCell.swift in Sources */,
 				1C87719E1DD258CA001146EC /* StudySessionDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

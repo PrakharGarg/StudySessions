@@ -120,16 +120,60 @@ class AddClassesViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "viewCourse" {
-            let destination = segue.destination as? CourseDetailViewController
-            let courseIndex = tableView.indexPathForSelectedRow?.row
-            if searchController.isActive && searchController.searchBar.text != "" {
-                destination?.detailCourse = filteredCourses[courseIndex!]
-            }
-            else {
-                destination?.detailCourse = allCourses[courseIndex!]
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath)
+    {
+        print("selected")
+        let courseIndex = tableView.indexPathForSelectedRow?.row
+        var detailCourse:PFObject
+        if searchController.isActive && searchController.searchBar.text != "" {
+            detailCourse = filteredCourses[courseIndex!]
+        }
+        else {
+            detailCourse = allCourses[courseIndex!]
+        }
+        
+        // create the alert
+        let alert = UIAlertController(title: "Add course?", message: "\(detailCourse["name"]!) \nProfessor: \(detailCourse["professor"]!)", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // create the actions
+        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            NSLog("OK Pressed")
+            
+            let user = PFUser.current()
+            let query = PFQuery(className:"Courses")
+            query.getObjectInBackground(withId: (detailCourse.objectId)!) {
+                (course: PFObject?, error: Error?) in
+                if error == nil
+                {
+                    print(course?["students"])
+                    if course?["students"] == nil {
+                        course?["students"] = [(user?.objectId)!]
+                    }
+                    else {
+                        course?.add((user?.objectId)!, forKey: "students")
+                    }
+                    course?.saveInBackground()
+                    let successAlert = UIAlertController(title: "Success", message: String(describing: "You have joined this class."), preferredStyle: UIAlertControllerStyle.alert)
+                    successAlert.addAction(UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(successAlert, animated: true, completion: nil)
+                    
+                    self.findCourses()
+                    
+                }
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        
+        // add the actions (buttons)
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 }

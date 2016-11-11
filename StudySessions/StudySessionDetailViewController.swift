@@ -32,6 +32,8 @@ class StudySessionDetailViewController: UIViewController {
         super.viewDidLoad()
         viewSetup()
         
+        self.title = studySession["name"] as? String
+        
         // Do any additional setup after loading the view.
     }
     
@@ -45,27 +47,24 @@ class StudySessionDetailViewController: UIViewController {
         location.text = studySession?["location"] as? String
         course.text = studySession?["course"] as? String
         descriptionBox.text = studySession?["description"] as? String
-//        let peopleArray = getPeople()
-//        people.text = getPeople()
+        
+        let studentIds = studySession["students"] as! Array<String>
+        var tempString = ""
+        
+        let query = PFUser.query()
+        query?.whereKey("objectId", containedIn: studentIds)
+        query?.findObjectsInBackground(block: { (students: [PFObject]?, error: Error?) in
+            if error == nil {
+                for student in students! {
+                   tempString += (" " + (student["username"] as! String) + "\n")
+                }
+                self.people.text = tempString
+                
+            }
+        })
+        
+        
+        
         
     }
-    
-    func getPeople() {
-        //for each string in array find persons name
-        /*var people_names = Array<String>()
-         let query = PFQuery(className:"User")
-         query.whereKey("objectId", containedIn: peopleArray)
-         query.findObjectsInBackground { (peopleInSS: [PFObject]?, error: Error?) in
-         if error == nil {
-         for person in peopleInSS! {
-         people_names.append(person["username"] as! String)
-         }
-         }
-         }
-         return people_names.joined(separator: ",")*/
-        
-//        let query = 
-//        return peopleArray.joined(separator: ", ")
-    }
-    
 }

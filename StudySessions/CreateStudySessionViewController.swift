@@ -26,7 +26,40 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
     // Variable that holds all of the courses for the current user
     var courses = [PFObject]()
 
+   
+    @IBOutlet weak var dateLabel: UITextField!
     
+    @IBAction func datePickerAction(_ sender: UITextField) {
+        
+        let datePickerView:UIDatePicker = UIDatePicker()
+        
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        
+        (sender as UITextField!).inputView = datePickerView
+        
+        
+        
+        datePickerView.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        
+        let dateFormatter = DateFormatter()
+        
+        
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        
+       
+        
+        self.dateLabel.text = dateFormatter.string(from: sender.date)
+        
+    }
+
     @IBAction func createSession(_ sender: AnyObject) {
         // Create a new study session
         let studySession = PFObject(className: "StudySessions")
@@ -34,7 +67,7 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         studySession["description"] = studySessionDescription.text
         studySession["location"] = location.text!
         studySession["course"] = course.text
-        studySession["time"] = time.text
+        studySession["time"] = dateLabel.text
         studySession["students"] = [(PFUser.current()?.objectId)!]
         
         studySession.saveInBackground { (success: Bool, error: Error?) in
@@ -49,7 +82,7 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
                 self.studySessionDescription.text = ""
                 self.location.text = ""
                 self.course.text = ""
-                self.time.text = ""
+                self.dateLabel.text = ""
 
             } else {
                 // There was a problem, check error.description
@@ -68,7 +101,11 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         // Init the pickerView
         pickerView.delegate = self
         course.inputView = pickerView
+    
     }
+    
+    
+
     
     override func viewWillAppear(_ animated: Bool) {
         findCourses()
@@ -86,6 +123,7 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         query.findObjectsInBackground { (object: [PFObject]?, error: Error?) in
             if error == nil {
                 self.courses = object!
+                self.courses.insert(PFUser.current()!, at: 0)
                 self.pickerView.reloadAllComponents()
             }
         }
@@ -104,6 +142,11 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        course.text = courses[row]["name"] as! String?
+        if row == 0 {
+            course.text = ""
+        }
+        else {
+            course.text = courses[row]["name"] as! String?
+        }
     }
 }

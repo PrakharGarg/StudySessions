@@ -27,6 +27,7 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
+        
     }
     
     // Refresh on View
@@ -71,6 +72,36 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.didReceiveMemoryWarning()
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let currentClass = self.courses[indexPath.row]["name"]
+            let query = PFQuery(className:"Courses")
+            query.whereKey("name", equalTo: currentClass)
+            query.findObjectsInBackground { (object: [PFObject]?, error: Error?) in
+                if error == nil {
+                    let userId = (PFUser.current()?.objectId)!
+                    let deleteClass = object?[0]
+                    var studentsInClass = deleteClass?["students"] as! Array<String>
+                    
+                    if let index = studentsInClass.index(of: userId) {
+                        studentsInClass.remove(at: index)
+                        
+                        object?[0]["students"] = studentsInClass
+                        object?[0].saveInBackground()
+                        
+                    }
+                }
+            }
+
+            
+            courses.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            
+        }
+    }
     
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
  }

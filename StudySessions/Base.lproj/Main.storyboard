@@ -618,11 +618,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blue-and-Purple-Blur-Background" translatesAutoresizingMaskIntoConstraints="NO" id="f5W-kO-Waf">
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Blue-and-Purple-Blur-Background" translatesAutoresizingMaskIntoConstraints="NO" id="f5W-kO-Waf">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6hQ-gs-lpJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6hQ-gs-lpJ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="showCoursesCell" id="dmG-fo-V8p" customClass="CoursesTableViewCell" customModule="StudySessions" customModuleProvider="target">
@@ -657,16 +659,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="f5W-kO-Waf" firstAttribute="trailing" secondItem="6hQ-gs-lpJ" secondAttribute="trailing" id="B8O-IH-bYp"/>
-                            <constraint firstItem="f5W-kO-Waf" firstAttribute="top" secondItem="6hQ-gs-lpJ" secondAttribute="top" constant="-64" id="Bwy-hk-08C"/>
-                            <constraint firstItem="6hQ-gs-lpJ" firstAttribute="leading" secondItem="ZBh-3e-tkq" secondAttribute="leading" id="KRH-AT-MzE"/>
-                            <constraint firstItem="f5W-kO-Waf" firstAttribute="leading" secondItem="6hQ-gs-lpJ" secondAttribute="leading" id="OaO-NU-5g9"/>
-                            <constraint firstItem="f5W-kO-Waf" firstAttribute="bottom" secondItem="Ylw-ri-qvK" secondAttribute="top" id="cye-72-7Yu"/>
-                            <constraint firstItem="6hQ-gs-lpJ" firstAttribute="bottom" secondItem="Ylw-ri-qvK" secondAttribute="top" id="gUE-Zd-bcI"/>
-                            <constraint firstItem="f5W-kO-Waf" firstAttribute="top" secondItem="ZBh-3e-tkq" secondAttribute="top" id="x6N-BP-1AS"/>
-                            <constraint firstAttribute="trailing" secondItem="6hQ-gs-lpJ" secondAttribute="trailing" id="yZE-kO-hN2"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Classes" id="0N1-qx-aPB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="86Y-5r-xPh">

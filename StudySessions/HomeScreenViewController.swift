@@ -20,13 +20,13 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     // Toggle to determine whether to see all sessions or just the ones you've joined
     // On = view ones you've joined
-    @IBOutlet var studySessionToggle: UISwitch!
+    @IBOutlet weak var studySessionSelector: UISegmentedControl!
     
     let searchController = UISearchController(searchResultsController: nil)
     
     var class_names = [String]()
     
-    @IBAction func toggleChanged(_ sender: Any) {
+    @IBAction func selectorChanged(_ sender: Any) {
         findCourses()
     }
     override func viewDidLoad() {
@@ -63,12 +63,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     //search function
-    func updateSearchResults(for searchController: UISearchController)
-    {
+    func updateSearchResults(for searchController: UISearchController){
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
-    func filterContentForSearchText(searchText: String, scope: String = "All")
-    {
+    func filterContentForSearchText(searchText: String, scope: String = "All"){
         filteredSessions = studySessions.filter
             { course in
                 return (((course["name"]) as AnyObject).lowercased).contains(searchText.lowercased())
@@ -115,7 +113,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             if self.class_names.contains((session["course"])! as! String){
                 // keep it
                 // If the toggle is turned on, only get the sessions that the user is a part of. 
-                if studySessionToggle.isOn {
+                if studySessionSelector.selectedSegmentIndex == 1 {
                     if (session["students"] as! Array).contains(userId){
                         // keep it
                     }
@@ -131,6 +129,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.studySessions.remove(at: index!)
             }
         }
+        self.studySessions.sort{ ($0["time"] as! String) < ($1["time"] as! String) }
         self.tableView.reloadData()
     }
     // Override the back button for the settings page to "Home" since the current title is too long
@@ -142,7 +141,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "showStudySession" {
             let s_s = sender as! PFObject
             let destination = segue.destination as! StudySessionDetailViewController
-            // NAREEN WE NEED TO MAKE A CLASS ATTRIBUTE IN YOUR VIEW CONTROLLER THAT THIS SEGUES TO WITH THE NAME studySession THAT WILL HOLD THE SESSION
+            
             destination.studySession = s_s
         }
         
@@ -169,6 +168,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let studySession:PFObject
         
+        // If we are filtering the search
         if searchController.isActive && searchController.searchBar.text != "" {
             studySession = filteredSessions[indexPath.row]
         }
@@ -244,9 +244,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
     }
-    
-    
-    
 }
 // function that gets called when someone presses the -> button
 extension HomeScreenViewController: StudySessionTableViewCellDelegate {

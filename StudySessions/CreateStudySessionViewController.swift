@@ -33,7 +33,7 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         
         let datePickerView:UIDatePicker = UIDatePicker()
         
-        datePickerView.datePickerMode = UIDatePickerMode.date
+        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         
         (sender as UITextField!).inputView = datePickerView
         
@@ -42,22 +42,17 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         datePickerView.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
     }
     
-    
     func datePickerValueChanged(sender:UIDatePicker) {
         
         let dateFormatter = DateFormatter()
         
-        
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "HH:mm:ss"
         
         dateFormatter.dateStyle = DateFormatter.Style.short
         
-        dateFormatter.timeStyle = DateFormatter.Style.none
-        
-       
+        dateFormatter.timeStyle = DateFormatter.Style.short
         
         self.dateLabel.text = dateFormatter.string(from: sender.date)
-        
     }
 
     @IBAction func createSession(_ sender: AnyObject) {

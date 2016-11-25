@@ -129,7 +129,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.studySessions.remove(at: index!)
             }
         }
-        self.studySessions.sort{ ($0["time"] as! String) < ($1["time"] as! String) }
+        self.studySessions.sort{ ($0["date"] as! Date) < ($1["date"] as! Date) }
         self.tableView.reloadData()
     }
     // Override the back button for the settings page to "Home" since the current title is too long
@@ -179,8 +179,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.delegate = self
         
         cell.studySession = [studySession]
-        
-        cell.title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
+        let date = studySession["date"] as! Date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm a"
+        let dateString = formatter.string(from: date)
+        cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString
         cell.className.text = (studySession["course"] as! String?)!
 
         let userId = (PFUser.current()?.objectId)!
@@ -205,7 +208,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Expand tapped rows and return untapped cells to normal height
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-            return 120
+            return 125
         }
         return 44
     }
@@ -218,7 +221,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.title_time.numberOfLines = 5
         // If a cell has been untapped, we want to reset it to its defaults
         if self.selectedRowIndex != -1 {
-            (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! StudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
+            let date = studySession["date"] as! Date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd HH:mm a"
+            let dateString = formatter.string(from: date)
+
+            (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! StudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + dateString
         }
         // If a cell has been tapped, show the extra info.
         if selectedRowIndex != indexPath.row {
@@ -236,7 +244,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             self.thereIsCellTapped = false
             self.selectedRowIndex = -1
             cell.title_time.numberOfLines = 1
-            cell.title_time.text = (studySession["name"] as! String?)! + " - " + (studySession["time"] as! String?)!
+            let date = studySession["date"] as! Date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd HH:mm a"
+            let dateString = formatter.string(from: date)
+
+            cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString
             self.tableView.deselectRow(at: indexPath, animated: true)
             
         }

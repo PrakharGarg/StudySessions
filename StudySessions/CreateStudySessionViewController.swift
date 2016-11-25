@@ -25,6 +25,8 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
     
     // Variable that holds all of the courses for the current user
     var courses = [PFObject]()
+    
+    var dateText:Date = Date.init()
 
    
     @IBOutlet weak var dateLabel: UITextField!
@@ -46,11 +48,12 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "HH:mm:ss"
+//        dateFormatter.dateFormat = ""MM/dd/YY hh:mm.SSSSxxx"
         
         dateFormatter.dateStyle = DateFormatter.Style.short
         
         dateFormatter.timeStyle = DateFormatter.Style.short
+        dateText = dateFormatter.date(from: dateFormatter.string(from: sender.date))!
         
         self.dateLabel.text = dateFormatter.string(from: sender.date)
     }
@@ -62,7 +65,7 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         studySession["description"] = studySessionDescription.text
         studySession["location"] = location.text!
         studySession["course"] = course.text
-        studySession["time"] = dateLabel.text
+        studySession["date"] = dateText
         studySession["students"] = [(PFUser.current()?.objectId)!]
         
         studySession.saveInBackground { (success: Bool, error: Error?) in

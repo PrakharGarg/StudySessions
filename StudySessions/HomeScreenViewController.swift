@@ -109,6 +109,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func filterSessions(){
         let userId = (PFUser.current()?.objectId)!
         for session in studySessions {
+            let index = self.studySessions.index(of: session)
+            if (session["date"] as! Date) < Date.init(){
+                self.studySessions.remove(at: index!)
+                continue
+            }
             
             if self.class_names.contains((session["course"])! as! String){
                 // keep it
@@ -118,14 +123,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                         // keep it
                     }
                     else {
-                        let index = self.studySessions.index(of: session)
                         self.studySessions.remove(at: index!)
                     }
                 }
             }
             // Remove all study sessions that are in classes that the user is not a part of.
             else {
-                let index = self.studySessions.index(of: session)
                 self.studySessions.remove(at: index!)
             }
         }

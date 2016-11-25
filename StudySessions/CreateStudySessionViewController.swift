@@ -48,7 +48,6 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
         
         let dateFormatter = DateFormatter()
         
-//        dateFormatter.dateFormat = ""MM/dd/YY hh:mm.SSSSxxx"
         
         dateFormatter.dateStyle = DateFormatter.Style.short
         
@@ -59,31 +58,44 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
     }
 
     @IBAction func createSession(_ sender: AnyObject) {
-        // Create a new study session
-        let studySession = PFObject(className: "StudySessions")
-        studySession["name"] = name.text
-        studySession["description"] = studySessionDescription.text
-        studySession["location"] = location.text!
-        studySession["course"] = course.text
-        studySession["date"] = dateText
-        studySession["students"] = [(PFUser.current()?.objectId)!]
-        
-        studySession.saveInBackground { (success: Bool, error: Error?) in
-            if (success) {
-                print("YAY")
-                // Show a success alert
-                let alert = UIAlertController(title: "Success", message: String(describing: "You have created a Study Session"), preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                // Clear the fields
-                self.name.text = ""
-                self.studySessionDescription.text = ""
-                self.location.text = ""
-                self.course.text = ""
-                self.dateLabel.text = ""
+        if dateText < Date.init() {
+            let alert = UIAlertController(title: "Error", message: String(describing: "You have created a Study Session in the past."), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            self.dateLabel.text = ""
+        }
+        else if name.text == "" || studySessionDescription.text == "" || location.text == "" || course.text == "" || dateLabel.text == "" {
+            let alert = UIAlertController(title: "Error", message: String(describing: "Please fill out all fields."), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            // Create a new study session
+            let studySession = PFObject(className: "StudySessions")
+            studySession["name"] = name.text
+            studySession["description"] = studySessionDescription.text
+            studySession["location"] = location.text!
+            studySession["course"] = course.text
+            studySession["date"] = dateText
+            studySession["students"] = [(PFUser.current()?.objectId)!]
+            
+            studySession.saveInBackground { (success: Bool, error: Error?) in
+                if (success) {
+                    print("YAY")
+                    // Show a success alert
+                    let alert = UIAlertController(title: "Success", message: String(describing: "You have created a Study Session"), preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    // Clear the fields
+                    self.name.text = ""
+                    self.studySessionDescription.text = ""
+                    self.location.text = ""
+                    self.course.text = ""
+                    self.dateLabel.text = ""
 
-            } else {
-                // There was a problem, check error.description
+                } else {
+                    // There was a problem, check error.description
+                }
             }
         }
     }

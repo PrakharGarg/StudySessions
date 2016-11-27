@@ -72,5 +72,14 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showFiles") {
+            let destination = segue.destination as! ViewFilesViewController
+            destination.studySession = self.studySession as PFObject
+        }
+    }
+
+    
 
 }

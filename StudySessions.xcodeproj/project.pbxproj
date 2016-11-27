@@ -26,6 +26,7 @@
 		1CE538BF1DB678630039B4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538BE1DB678630039B4A2 /* Assets.xcassets */; };
 		1CE538C21DB678630039B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538C01DB678630039B4A2 /* LaunchScreen.storyboard */; };
 		B4B25DA9529617E7A9CCA70D /* Pods_StudySessions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */; };
+		EB39A02D1DEA7A9C0036BE99 /* AddNewFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39A02C1DEA7A9C0036BE99 /* AddNewFileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		1CE538C31DB678630039B4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ADBBCD5C92527EB4B6EBCE5 /* Pods-StudySessions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudySessions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudySessions/Pods-StudySessions.debug.xcconfig"; sourceTree = "<group>"; };
 		66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudySessions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB39A02C1DEA7A9C0036BE99 /* AddNewFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewFileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				1CE06B5C1DB85807006B95DE /* HomeScreenViewController.swift */,
+				EB39A02C1DEA7A9C0036BE99 /* AddNewFileViewController.swift */,
 				1CE538B31DB678620039B4A2 /* AppDelegate.swift */,
 				1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */,
 				1CE538BB1DB678620039B4A2 /* Main.storyboard */,
@@ -262,6 +265,7 @@
 				1CA624F61DB6BAEA00F4E07B /* CreateStudySessionViewController.swift in Sources */,
 				1CE06B5B1DB85697006B95DE /* keyboardDissapear.swift in Sources */,
 				1C069BD21DC051CD008E3AE8 /* AddClassesViewController.swift in Sources */,
+				EB39A02D1DEA7A9C0036BE99 /* AddNewFileViewController.swift in Sources */,
 				1C6C30A41DBC6C960093C18A /* CoursesTableViewCell.swift in Sources */,
 				1CE06B5D1DB85807006B95DE /* HomeScreenViewController.swift in Sources */,
 				1C7C3E611DD5553A00B326A3 /* ViewFileTableViewCell.swift in Sources */,

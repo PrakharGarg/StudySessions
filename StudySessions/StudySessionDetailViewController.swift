@@ -71,9 +71,10 @@ class StudySessionDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showFiles") {
-            let destination = segue.destination as! ViewFilesViewController
+        if(segue.identifier == "showAddNewFile") {
+            let destination = segue.destination as! AddNewFileViewController
             destination.studySession = self.studySession as PFObject
+            destination.title = studySession?["name"] as? String
         }
     }
 }

@@ -655,6 +655,9 @@
                                 <frame key="frameInset" minX="138" minY="105" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add New File"/>
+                                <connections>
+                                    <segue destination="vYT-ie-qN5" kind="show" identifier="showAddNewFile" id="Ui5-HL-9Kx"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zjW-5b-q1H">
                                 <frame key="frameInset" minX="16" minY="168" width="343" height="447"/>
@@ -690,6 +693,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fed-21-u8y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3775.1999999999998" y="-1072.7136431784108"/>
+        </scene>
+        <!--Add New File View Controller-->
+        <scene sceneID="zMm-2m-PC3">
+            <objects>
+                <viewController id="vYT-ie-qN5" customClass="AddNewFileViewController" customModule="StudySessions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S9c-j8-hBh"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ume-tI-fB1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="apC-El-2bL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ki-JW-g2N">
+                                <frame key="frameInset" minX="16" minY="131" width="343" height="396"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuc-Zf-Lgg">
+                                <frame key="frameInset" minX="140" minY="535" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Open Camera"/>
+                                <connections>
+                                    <action selector="addFromCameraBtn:" destination="vYT-ie-qN5" eventType="touchUpInside" id="Mus-QI-YJp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fl4-8a-6yj">
+                                <frame key="frameInset" minX="120" minY="573" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Open Photo Library"/>
+                                <connections>
+                                    <action selector="addFromPhotoLibraryBtn:" destination="vYT-ie-qN5" eventType="touchUpInside" id="yVI-Sg-Eag"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-eO-71d">
+                                <frame key="frameInset" minX="287" minY="80" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add File"/>
+                                <connections>
+                                    <action selector="saveAndAddNewFile:" destination="vYT-ie-qN5" eventType="touchUpInside" id="H4U-rd-UZU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="7ki-JW-g2N" id="043-J5-aRv"/>
+                        <segue destination="mxT-aZ-ojd" kind="show" identifier="returnToViewFiles" id="9jk-7P-hJK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y7B-IQ-ZnG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4646" y="-1073"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9CL-rm-Dg5">
@@ -842,4 +897,7 @@
     <resources>
         <image name="Blue-and-Purple-Blur-Background" width="640" height="1136"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9jk-7P-hJK"/>
+    </inferredMetricsTieBreakers>
 </document>

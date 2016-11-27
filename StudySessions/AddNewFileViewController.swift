@@ -38,7 +38,7 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func saveAndAddNewFile(_ sender: AnyObject) {
-        //Saves to camera roll
+        //if no image is selected ...
         if imageView.image == nil {
             //Alerts user and returns to View Files view
             let alertController = UIAlertController(
@@ -54,12 +54,17 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
             alertController.addAction(OKAction)
             present(alertController, animated: true, completion: nil)
         } else {
-            let imageData = UIImageJPEGRepresentation(imageView.image!, 0.6)
-            let compressedJPGImage = UIImage(data: imageData!)
-            UIImageWriteToSavedPhotosAlbum(compressedJPGImage!, nil, nil, nil)
-        
-            //Saves to study session files
-        
+            //Saves to study session files as NSData -- need to convert to UIImage to display
+            let imageData:NSData = NSData(data: UIImageJPEGRepresentation(imageView.image! , 0.7)!)
+            
+            let imageFile:PFFile = PFFile(data: imageData as Data)!
+            if studySession?["files"] == nil {
+                studySession?["files"] = [imageFile]
+            } else {
+                studySession?.add(imageFile, forKey: "files")
+            }
+            studySession?.saveInBackground()
+            
             //Alerts user and returns to View Files view
             let alertController = UIAlertController(
                 title: "Yay!",
@@ -69,7 +74,7 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
         
             let OKAction = UIAlertAction(
                 title: "Okay", style: .default) { (action:UIAlertAction!) in
-                    self.performSegue(withIdentifier: "returnToViewFiles", sender: self)
+                    // ...
             }
             alertController.addAction(OKAction)
         
@@ -82,6 +87,8 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.title = studySession["name"] as? String
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,15 +105,5 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -19,15 +19,8 @@ class StudySessionDetailViewController: UIViewController {
     @IBOutlet var people: UILabel!
     
     var studySession: PFObject!
-
     
-    var peopleInStudySession = [PFObject]()
-    var people_names = [String]()
-    let userId = (PFUser.current()?.objectId)!
-    
-    
-    
-      override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         viewSetup()
         
@@ -65,16 +58,12 @@ class StudySessionDetailViewController: UIViewController {
             }
         })
         
-        
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showAddNewFile") {
-            let destination = segue.destination as! AddNewFileViewController
-            destination.studySession = self.studySession as PFObject
-            destination.title = studySession?["name"] as? String
+        if(segue.identifier == "showFiles") {
+            let destination = segue.destination as! ViewFilesViewController
+            destination.studySession = self.studySession
         }
     }
 }

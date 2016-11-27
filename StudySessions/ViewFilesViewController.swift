@@ -11,19 +11,15 @@ import Parse
 
 class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    // Variable that holds all of the files for the current study session
-    var imageArray = [UIImage]()
+    @IBOutlet var tableView: UITableView!
     
     var studySession: PFObject!
+    var imageFiles = [PFFile]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Hide the keyboard
         hideKeyboardWhenTappedAround()
-        // Set the title of the view controller
-        self.title = "Study Session Files"
         // Find all of the courses for the current user
         loadFiles()
         // Allow users to refresh the page if the pull down
@@ -43,13 +39,25 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func loadFiles() {
-//        let imageDataArray = studySession?["files"] as! [NSData]
-//        if imageDataArray != nil {
-//            for imageData in imageDataArray {
-//                let image = UIImage(data: imageData as Data)
-//                self.imageArray.append(image!)
-//            }
-//        }
+        //make sure imageFiles is empty
+//        imageFiles.removeAll(keepingCapacity: false)
+        let query = PFQuery(className: "StudySessions")
+        query.getObjectInBackground(withId: studySession.objectId!, block: { (object: PFObject?, error: Error?) in
+            if error == nil {
+                if let allImageFiles = object?.value(forKey: "files") as? [PFFile]!{
+                    if allImageFiles == nil {
+                        self.imageFiles = [PFFile]()
+                        self.tableView.reloadData()
+                    } else {
+                        for imageFile in allImageFiles {
+                            self.imageFiles.append(imageFile)
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+
+        })
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,16 +65,28 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.imageArray.count
+        return self.imageFiles.count
     }
+    
     // Create cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "singleFile", for: indexPath) as! ViewFileTableViewCell
-        let file = self.imageArray[indexPath.row]
-        
-        cell.fileImageView.image = file
+        self.imageFiles[indexPath.row].getDataInBackground { (imageData: Data?, error: Error?) in
+            if error == nil {
+                let image = UIImage(data: imageData!)
+                cell.fileImageView.image = image!
+                print("The loaded image: \(image)")
+            }
+        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,12 +94,10 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showFiles") {
-            let destination = segue.destination as! ViewFilesViewController
-            destination.studySession = self.studySession as PFObject
+        if(segue.identifier == "showAddNewFile") {
+            let destination = segue.destination as! AddNewFileViewController
+            destination.studySession = self.studySession
         }
     }
-
-    
 
 }

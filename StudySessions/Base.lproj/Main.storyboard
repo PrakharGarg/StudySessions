@@ -739,7 +739,6 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="7ki-JW-g2N" id="043-J5-aRv"/>
-                        <segue destination="mxT-aZ-ojd" kind="show" identifier="returnToViewFiles" id="9jk-7P-hJK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y7B-IQ-ZnG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -897,7 +896,4 @@
     <resources>
         <image name="Blue-and-Purple-Blur-Background" width="640" height="1136"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="9jk-7P-hJK"/>
-    </inferredMetricsTieBreakers>
 </document>

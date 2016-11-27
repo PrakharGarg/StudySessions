@@ -11,13 +11,12 @@ import Parse
 
 class StudySessionDetailViewController: UIViewController {
     
-    @IBOutlet var dateAndTime: UILabel!
+    
+    @IBOutlet weak var dateAndTime: UILabel!
     @IBOutlet var location: UILabel!
     @IBOutlet var course: UILabel!
     @IBOutlet var descriptionBox: UILabel!
     @IBOutlet var people: UILabel!
-    
-    
     
     var studySession: PFObject!
 
@@ -43,7 +42,10 @@ class StudySessionDetailViewController: UIViewController {
     }
     
     func viewSetup(){
-        dateAndTime.text = studySession?["time"] as? String
+        let date = studySession["date"] as! Date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm a"
+        dateAndTime.text = formatter.string(from: date) as String
         location.text = studySession?["location"] as? String
         course.text = studySession?["course"] as? String
         descriptionBox.text = studySession?["description"] as? String

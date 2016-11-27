@@ -8,9 +8,20 @@
 
 import UIKit
 
+protocol ViewFileTableViewCellDelegate: class {
+    func goToFile(with cell: ViewFileTableViewCell)
+}
+
 class ViewFileTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var fileImageView: UIImageView!
+    @IBOutlet weak var imageFileView: UIImageView!
+    weak var delegate: ViewFileTableViewCellDelegate?
+    
+    @IBAction func viewFileLargeBtn(_ sender: Any) {
+        delegate?.goToFile(with: self)
+    }
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

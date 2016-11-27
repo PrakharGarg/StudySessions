@@ -18,6 +18,8 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = self
+        
         // Hide the keyboard
         hideKeyboardWhenTappedAround()
         // Find all of the courses for the current user
@@ -40,7 +42,7 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func loadFiles() {
         //make sure imageFiles is empty
-//        imageFiles.removeAll(keepingCapacity: false)
+        imageFiles.removeAll(keepingCapacity: false)
         let query = PFQuery(className: "StudySessions")
         query.getObjectInBackground(withId: studySession.objectId!, block: { (object: PFObject?, error: Error?) in
             if error == nil {
@@ -70,23 +72,16 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // Create cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "singleFile", for: indexPath) as! ViewFileTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "singleFile", for: indexPath) as! ViewFileTableViewCell
+        cell.delegate = self
         self.imageFiles[indexPath.row].getDataInBackground { (imageData: Data?, error: Error?) in
             if error == nil {
                 let image = UIImage(data: imageData!)
-                cell.fileImageView.image = image!
-                print("The loaded image: \(image)")
+                cell.imageFileView.image = image!
             }
         }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -98,6 +93,17 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
             let destination = segue.destination as! AddNewFileViewController
             destination.studySession = self.studySession
         }
+        if segue.identifier == "viewFileLarge" {
+            let destination = segue.destination as! ViewFileViewController
+            let cellSender = sender as! ViewFileTableViewCell
+            destination.image = cellSender.imageFileView.image!
+        }
     }
+}
 
+ // function that gets called when someone presses the -> button
+extension ViewFilesViewController: ViewFileTableViewCellDelegate {
+    func goToFile(with cell: ViewFileTableViewCell) {
+        performSegue(withIdentifier: "viewFileLarge", sender: cell)
+    } 
 }

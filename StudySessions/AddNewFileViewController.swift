@@ -13,6 +13,7 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
 
     var studySession: PFObject!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var imageFileName: UITextField!
     
     
     @IBAction func addFromCameraBtn(_ sender: AnyObject) {
@@ -39,11 +40,11 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func saveAndAddNewFile(_ sender: AnyObject) {
         //if no image is selected ...
-        if imageView.image == nil {
+        if imageView.image == nil || imageFileName == nil{
             //Alerts user and returns to View Files view
             let alertController = UIAlertController(
                 title: "Error",
-                message: "Please select a file to upload.",
+                message: "Please select a file to upload and enter a file name.",
                 preferredStyle: .alert
             )
             

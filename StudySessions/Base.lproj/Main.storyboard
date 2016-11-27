@@ -651,40 +651,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlG-jq-ise">
-                                <frame key="frameInset" minX="138" minY="105" width="98" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlG-jq-ise">
                                 <state key="normal" title="Add New File"/>
                                 <connections>
                                     <segue destination="vYT-ie-qN5" kind="show" identifier="showAddNewFile" id="Ui5-HL-9Kx"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zjW-5b-q1H">
-                                <frame key="frameInset" minX="16" minY="168" width="343" height="447"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zjW-5b-q1H">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="singleFile" id="il2-yx-IcM" customClass="ViewFileTableViewCell" customModule="StudySessions" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="il2-yx-IcM" id="WhC-KN-eRN">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="il2-yx-IcM" id="WhC-KN-eRN">
                                             <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tum-yQ-vHB">
-                                                    <frame key="frameInset" minX="51" width="240" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tum-yQ-vHB">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="240" id="USz-Jx-Qtp"/>
+                                                    </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPZ-vI-foG">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jy0-WO-5qB">
+                                                    <frame key="frameInset" minX="294" minY="8" width="49" height="27"/>
+                                                    <state key="normal" title="View"/>
+                                                    <connections>
+                                                        <action selector="viewFileLargeBtn:" destination="il2-yx-IcM" eventType="touchUpInside" id="NoA-id-kva"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tum-yQ-vHB" firstAttribute="centerY" secondItem="jy0-WO-5qB" secondAttribute="centerY" id="2H4-jr-UL5"/>
+                                                <constraint firstItem="oPZ-vI-foG" firstAttribute="top" secondItem="WhC-KN-eRN" secondAttribute="topMargin" constant="6" id="HMi-f0-LZ6"/>
+                                                <constraint firstItem="tum-yQ-vHB" firstAttribute="leading" secondItem="WhC-KN-eRN" secondAttribute="leadingMargin" constant="28" id="Hi3-F1-Cnz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oPZ-vI-foG" secondAttribute="trailing" constant="34" id="czw-SF-izq"/>
+                                                <constraint firstItem="tum-yQ-vHB" firstAttribute="top" secondItem="WhC-KN-eRN" secondAttribute="top" id="gA7-7a-VSk"/>
+                                                <constraint firstItem="jy0-WO-5qB" firstAttribute="top" secondItem="WhC-KN-eRN" secondAttribute="topMargin" id="l15-Ka-A52"/>
+                                                <constraint firstAttribute="bottom" secondItem="tum-yQ-vHB" secondAttribute="bottom" id="qH3-Se-lJ6"/>
+                                                <constraint firstItem="jy0-WO-5qB" firstAttribute="leading" secondItem="tum-yQ-vHB" secondAttribute="trailing" constant="18" id="uaq-aW-Dfg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jy0-WO-5qB" secondAttribute="trailing" constant="-45" id="yyo-6e-4iV"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="fileImageView" destination="tum-yQ-vHB" id="prg-L4-Bpl"/>
+                                            <outlet property="imageFileView" destination="tum-yQ-vHB" id="C6Y-fO-g4D"/>
+                                            <segue destination="trn-2P-dzc" kind="show" identifier="viewFileLarge" id="qvP-fF-cpK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rlG-jq-ise" firstAttribute="top" secondItem="a0Q-US-Yda" secondAttribute="bottom" constant="19" id="KnZ-zB-2az"/>
+                            <constraint firstItem="zjW-5b-q1H" firstAttribute="trailing" secondItem="SB8-IK-cRZ" secondAttribute="trailingMargin" id="RCR-xb-7cj"/>
+                            <constraint firstItem="Gwq-EU-P89" firstAttribute="top" secondItem="zjW-5b-q1H" secondAttribute="bottom" constant="55" id="YEF-2V-snE"/>
+                            <constraint firstItem="rlG-jq-ise" firstAttribute="centerX" secondItem="zjW-5b-q1H" secondAttribute="centerX" id="alL-lH-hhG"/>
+                            <constraint firstItem="zjW-5b-q1H" firstAttribute="top" secondItem="rlG-jq-ise" secondAttribute="bottom" constant="8" symbolic="YES" id="b3h-3z-Xfq"/>
+                            <constraint firstItem="zjW-5b-q1H" firstAttribute="leading" secondItem="SB8-IK-cRZ" secondAttribute="leadingMargin" id="zfo-r2-2hc"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="zjW-5b-q1H" id="CC9-p2-dsH"/>
@@ -693,6 +722,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fed-21-u8y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3775.1999999999998" y="-1072.7136431784108"/>
+        </scene>
+        <!--View File View Controller-->
+        <scene sceneID="MRb-T0-EtQ">
+            <objects>
+                <viewController id="trn-2P-dzc" customClass="ViewFileViewController" customModule="StudySessions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C28-10-yhv"/>
+                        <viewControllerLayoutGuide type="bottom" id="e4h-Gq-lSG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qlw-hc-evb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xNR-db-3Rt"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="xNR-db-3Rt" secondAttribute="bottom" id="EHi-ic-Lhw"/>
+                            <constraint firstAttribute="trailing" secondItem="xNR-db-3Rt" secondAttribute="trailing" id="Npg-3r-kxg"/>
+                            <constraint firstItem="xNR-db-3Rt" firstAttribute="leading" secondItem="Qlw-hc-evb" secondAttribute="leading" id="Wxu-wm-3zH"/>
+                            <constraint firstItem="xNR-db-3Rt" firstAttribute="top" secondItem="Qlw-hc-evb" secondAttribute="top" id="g85-SY-dGH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="xNR-db-3Rt" id="i0O-vi-8G0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QlE-JS-fYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4645.6000000000004" y="-1787.8560719640182"/>
         </scene>
         <!--Add New File View Controller-->
         <scene sceneID="zMm-2m-PC3">
@@ -706,29 +765,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ki-JW-g2N">
-                                <frame key="frameInset" minX="16" minY="131" width="343" height="396"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuc-Zf-Lgg">
-                                <frame key="frameInset" minX="140" minY="535" width="95" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ki-JW-g2N"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuc-Zf-Lgg">
                                 <state key="normal" title="Open Camera"/>
                                 <connections>
                                     <action selector="addFromCameraBtn:" destination="vYT-ie-qN5" eventType="touchUpInside" id="Mus-QI-YJp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fl4-8a-6yj">
-                                <frame key="frameInset" minX="120" minY="573" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fl4-8a-6yj">
                                 <state key="normal" title="Open Photo Library"/>
                                 <connections>
                                     <action selector="addFromPhotoLibraryBtn:" destination="vYT-ie-qN5" eventType="touchUpInside" id="yVI-Sg-Eag"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-eO-71d">
-                                <frame key="frameInset" minX="287" minY="80" width="72" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-eO-71d">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="aH1-Zz-8qL"/>
+                                </constraints>
                                 <state key="normal" title="Add File"/>
                                 <connections>
                                     <action selector="saveAndAddNewFile:" destination="vYT-ie-qN5" eventType="touchUpInside" id="H4U-rd-UZU"/>
@@ -736,6 +789,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7ki-JW-g2N" firstAttribute="top" secondItem="uuS-eO-71d" secondAttribute="bottom" constant="21" id="0lc-oh-RTY"/>
+                            <constraint firstItem="7ki-JW-g2N" firstAttribute="leading" secondItem="apC-El-2bL" secondAttribute="leadingMargin" id="1n6-Bu-uFB"/>
+                            <constraint firstItem="uuS-eO-71d" firstAttribute="trailing" secondItem="apC-El-2bL" secondAttribute="trailingMargin" id="Heo-7H-x9n"/>
+                            <constraint firstItem="Ume-tI-fB1" firstAttribute="top" secondItem="Fl4-8a-6yj" secondAttribute="bottom" constant="20" id="Hq4-fk-zIa"/>
+                            <constraint firstItem="Fl4-8a-6yj" firstAttribute="top" secondItem="kuc-Zf-Lgg" secondAttribute="bottom" constant="8" symbolic="YES" id="Rbf-ft-KeM"/>
+                            <constraint firstItem="uuS-eO-71d" firstAttribute="top" secondItem="S9c-j8-hBh" secondAttribute="bottom" constant="16" id="V0e-3j-vut"/>
+                            <constraint firstItem="kuc-Zf-Lgg" firstAttribute="top" secondItem="7ki-JW-g2N" secondAttribute="bottom" constant="46" id="e5K-nS-jqg"/>
+                            <constraint firstItem="7ki-JW-g2N" firstAttribute="centerX" secondItem="kuc-Zf-Lgg" secondAttribute="centerX" id="gt6-7k-g0t"/>
+                            <constraint firstItem="kuc-Zf-Lgg" firstAttribute="centerX" secondItem="Fl4-8a-6yj" secondAttribute="centerX" id="h2z-VY-MKD"/>
+                            <constraint firstItem="uuS-eO-71d" firstAttribute="trailing" secondItem="7ki-JW-g2N" secondAttribute="trailing" id="v0L-YI-UWj"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="7ki-JW-g2N" id="043-J5-aRv"/>
@@ -743,7 +808,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y7B-IQ-ZnG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4646" y="-1073"/>
+            <point key="canvasLocation" x="4645.6000000000004" y="-1073.6131934032985"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9CL-rm-Dg5">

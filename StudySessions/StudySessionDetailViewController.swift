@@ -38,10 +38,6 @@ class StudySessionDetailViewController: UIViewController {
         let date = studySession["date"] as! Date
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy hh:mm a"
-        dateAndTime.text = formatter.string(from: date) as String
-        location.text = studySession?["location"] as? String
-        course.text = studySession?["course"] as? String
-        descriptionBox.text = studySession?["description"] as? String
         
         let studentIds = studySession["students"] as! Array<String>
         var tempString = ""
@@ -53,6 +49,11 @@ class StudySessionDetailViewController: UIViewController {
                 for student in students! {
                    tempString += (" " + (student["username"] as! String) + "\n")
                 }
+                self.dateAndTime.text = formatter.string(from: date) as String
+                self.location.text = self.studySession?["location"] as? String
+                self.course.text = self.studySession?["course"] as? String
+                self.descriptionBox.text = self.studySession?["description"] as? String
+
                 self.people.text = tempString
                 
             }

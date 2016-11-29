@@ -184,7 +184,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.studySession = [studySession]
         let date = studySession["date"] as! Date
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yy hh:mm a"
+        formatter.dateFormat = "MM/dd hh:mm a"
         let dateString = formatter.string(from: date)
         cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString
         cell.className.text = (studySession["course"] as! String?)!
@@ -226,7 +226,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         if self.selectedRowIndex != -1 {
             let date = studySession["date"] as! Date
             let formatter = DateFormatter()
-            formatter.dateFormat = "MM/dd HH:mm a"
+            formatter.dateFormat = "MM/dd hh:mm a"
             let dateString = formatter.string(from: date)
 
             (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! StudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + dateString
@@ -250,7 +250,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.title_time.numberOfLines = 1
             let date = studySession["date"] as! Date
             let formatter = DateFormatter()
-            formatter.dateFormat = "MM/dd/yy hh:mm a"
+            formatter.dateFormat = "MM/dd hh:mm a"
             let dateString = formatter.string(from: date)
 
             cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString
@@ -267,6 +267,10 @@ extension HomeScreenViewController: StudySessionTableViewCellDelegate {
     func goToSession(with cell: StudySessionTableViewCell) {
         let indexPath = tableView.indexPath(for: cell)!
         let s_s = studySessions[indexPath.row]
+        var students = s_s["students"] as! Array<Any>
+        let userId = (PFUser.current()?.objectId)!
+        students.append(userId)
+        s_s["students"] = students
         performSegue(withIdentifier: "showStudySession", sender: s_s)
     }
     

@@ -11,7 +11,8 @@ import Parse
 
 class MyClassesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Table view delegate
-    @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet weak var tableView: UITableView!
     // Variable that holds all of the courses for the current user
     var courses = [PFObject]()
     
@@ -27,6 +28,11 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.allowsSelection = true
         
     }
     
@@ -61,10 +67,13 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     // Create cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "showCoursesCell", for: indexPath) as! CoursesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "showCoursesCell", for: indexPath) as! ShowCoursesTableCell
         let course = self.courses[indexPath.row]
-         // Set the cell text to be the class name
-        cell.courseLabel.text = (course["name"]) as? String
+        
+        cell.delegate = self
+        
+        // Set the cell text to be the class name
+        cell.class_name.text = (course["name"]) as? String
         
         return cell
     }
@@ -103,4 +112,23 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
- }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showClassSessions" {
+            let s_s = sender as! PFObject
+            let destination = segue.destination as! ClassStudySessionsViewController
+            
+            destination.course = s_s
+        }
+    }
+}
+
+// function that gets called when someone presses the history button
+extension MyClassesViewController: ShowCoursesTableCellDelegate {
+    func goToSession(with cell: ShowCoursesTableCell) {
+        let indexPath = tableView.indexPath(for: cell)!
+        let s_s = courses[indexPath.row]
+        performSegue(withIdentifier: "showClassSessions", sender: s_s)
+    }
+    
+}

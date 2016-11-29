@@ -40,11 +40,11 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func saveAndAddNewFile(_ sender: AnyObject) {
         //if no image is selected ...
-        if imageView.image == nil || imageFileName == nil{
+        if imageView.image == nil {
             //Alerts user and returns to View Files view
             let alertController = UIAlertController(
                 title: "Error",
-                message: "Please select a file to upload and enter a file name.",
+                message: "Please select a file to upload.",
                 preferredStyle: .alert
             )
             

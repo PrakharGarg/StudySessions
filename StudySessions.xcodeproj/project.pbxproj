@@ -25,6 +25,9 @@
 		1CE538BD1DB678620039B4A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538BB1DB678620039B4A2 /* Main.storyboard */; };
 		1CE538BF1DB678630039B4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538BE1DB678630039B4A2 /* Assets.xcassets */; };
 		1CE538C21DB678630039B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE538C01DB678630039B4A2 /* LaunchScreen.storyboard */; };
+		1CF235B11DECF204005CF922 /* ClassStudySessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF235AD1DECF204005CF922 /* ClassStudySessionsViewController.swift */; };
+		1CF235B21DECF204005CF922 /* CourseStudySessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF235AE1DECF204005CF922 /* CourseStudySessionTableViewCell.swift */; };
+		1CF235B31DECF204005CF922 /* ShowCoursesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF235AF1DECF204005CF922 /* ShowCoursesTableCell.swift */; };
 		B4B25DA9529617E7A9CCA70D /* Pods_StudySessions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */; };
 		EB39A02D1DEA7A9C0036BE99 /* AddNewFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39A02C1DEA7A9C0036BE99 /* AddNewFileViewController.swift */; };
 		EB50E2521DEAFDEB0088B338 /* ViewFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50E2511DEAFDEB0088B338 /* ViewFileViewController.swift */; };
@@ -52,6 +55,9 @@
 		1CE538BE1DB678630039B4A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CE538C11DB678630039B4A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1CE538C31DB678630039B4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CF235AD1DECF204005CF922 /* ClassStudySessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassStudySessionsViewController.swift; sourceTree = "<group>"; };
+		1CF235AE1DECF204005CF922 /* CourseStudySessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseStudySessionTableViewCell.swift; sourceTree = "<group>"; };
+		1CF235AF1DECF204005CF922 /* ShowCoursesTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowCoursesTableCell.swift; sourceTree = "<group>"; };
 		2ADBBCD5C92527EB4B6EBCE5 /* Pods-StudySessions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudySessions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudySessions/Pods-StudySessions.debug.xcconfig"; sourceTree = "<group>"; };
 		66A5C8A01A65B814AC7F0FDD /* Pods_StudySessions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudySessions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB39A02C1DEA7A9C0036BE99 /* AddNewFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewFileViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +100,9 @@
 				1CE06B5C1DB85807006B95DE /* HomeScreenViewController.swift */,
 				EB50E2511DEAFDEB0088B338 /* ViewFileViewController.swift */,
 				EB39A02C1DEA7A9C0036BE99 /* AddNewFileViewController.swift */,
+				1CF235AD1DECF204005CF922 /* ClassStudySessionsViewController.swift */,
+				1CF235AE1DECF204005CF922 /* CourseStudySessionTableViewCell.swift */,
+				1CF235AF1DECF204005CF922 /* ShowCoursesTableCell.swift */,
 				1CE538B31DB678620039B4A2 /* AppDelegate.swift */,
 				1CC886BF1DB6AA09007F5E62 /* PageViewController.swift */,
 				1CE538BB1DB678620039B4A2 /* Main.storyboard */,
@@ -257,12 +266,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CF235B21DECF204005CF922 /* CourseStudySessionTableViewCell.swift in Sources */,
 				1CE538B41DB678620039B4A2 /* AppDelegate.swift in Sources */,
 				1CA624FA1DB6C24A00F4E07B /* SettingsScreenViewController.swift in Sources */,
 				1CC886C01DB6AA09007F5E62 /* PageViewController.swift in Sources */,
 				1CD1A3FB1DB6899900F68C35 /* SignUpScreenViewController.swift in Sources */,
 				1C7C3E631DD555B300B326A3 /* ViewFilesViewController.swift in Sources */,
 				1CD828FD1DB67B38005F3A66 /* LogInScreenViewController.swift in Sources */,
+				1CF235B11DECF204005CF922 /* ClassStudySessionsViewController.swift in Sources */,
 				1C8771A01DD27F6F001146EC /* StudySessionTableViewCell.swift in Sources */,
 				1CA624F81DB6C00700F4E07B /* MyClassesViewController.swift in Sources */,
 				EB50E2521DEAFDEB0088B338 /* ViewFileViewController.swift in Sources */,
@@ -273,6 +284,7 @@
 				1C6C30A41DBC6C960093C18A /* CoursesTableViewCell.swift in Sources */,
 				1CE06B5D1DB85807006B95DE /* HomeScreenViewController.swift in Sources */,
 				1C7C3E611DD5553A00B326A3 /* ViewFileTableViewCell.swift in Sources */,
+				1CF235B31DECF204005CF922 /* ShowCoursesTableCell.swift in Sources */,
 				1C87719E1DD258CA001146EC /* StudySessionDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

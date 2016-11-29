@@ -37,7 +37,7 @@ class StudySessionDetailViewController: UIViewController {
     func viewSetup(){
         let date = studySession["date"] as! Date
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd HH:mm a"
+        formatter.dateFormat = "MM/dd/yy hh:mm a"
         dateAndTime.text = formatter.string(from: date) as String
         location.text = studySession?["location"] as? String
         course.text = studySession?["course"] as? String

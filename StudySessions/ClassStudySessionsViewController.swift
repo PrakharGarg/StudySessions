@@ -1,38 +1,29 @@
 //
-//  HomeScreenViewController.swift
+//  ClassStudySessionsViewController.swift
 //  StudySessions
 //
-//  Created by Prakhar Garg on 10/18/16.
+//  Created by Prakhar Garg on 11/25/16.
 //  Copyright © 2016 Group2. All rights reserved.
 //
+
 import UIKit
 import Parse
 
-// This view controller is the main View that users will see when the launch the app.
-// This view is hooked up to a Navigation Controller
-class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class ClassStudySessionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+    
+    var course:PFObject!
+
     // Variable that holds all of the study sessions that are in the classes that the user is in.
     var studySessions = [PFObject]()
     var filteredSessions = [PFObject]()
-    // Variable that holds all of the classes for the current user
-    var currentClasses = [PFObject]()
     // The TableView outlet
-    @IBOutlet var tableView: UITableView!
-    // Toggle to determine whether to see all sessions or just the ones you've joined
-    // On = view ones you've joined
-    @IBOutlet weak var studySessionSelector: UISegmentedControl!
-    
+    @IBOutlet weak var tableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
     
-    var class_names = [String]()
-    
-    @IBAction func selectorChanged(_ sender: Any) {
-        findCourses()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set the title of the page
-        self.title = "Study Sessions"
+        self.title = course["name"] as! String
         // Make a refresh controller for when users pull down on the table. This refresehes the data
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -61,7 +52,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         findCourses()
         refreshControl.endRefreshing()
     }
-
+    
     //search function
     func updateSearchResults(for searchController: UISearchController){
         filterContentForSearchText(searchText: searchController.searchBar.text!)
@@ -82,66 +73,38 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     // Function that runs a query to find all Courses objects that have the current user's id in it's list of students.
     // After we find all of the student's courses, we find all study sessions and filter them by the classes that the user is a part of.
     func findCourses() {
-        let userId = (PFUser.current()?.objectId)!
-        let query = PFQuery(className:"Courses")
-        query.whereKey("students", equalTo: userId)
-        query.findObjectsInBackground { (classes: [PFObject]?, error: Error?) in
+        let query = PFQuery(className:"StudySessions")
+        let courseName = course["name"] as! String
+        query.whereKey("course", equalTo: courseName)
+        query.findObjectsInBackground { (sessions: [PFObject]?, error: Error?) in
             if error == nil {
                 // print("SWEET")
-                self.currentClasses = classes!
-                // Create an array of all of the class names that the student is a part of.
-                for course in self.currentClasses {
-                    self.class_names.append((course["name"])! as! String)
-                }
-                // Run a new query to find all study sessions.
-                let sessionQuery = PFQuery(className: "StudySessions")
-                sessionQuery.findObjectsInBackground( block: { (sessions: [PFObject]?, error: Error?) in
-                    if error == nil {
-                        self.studySessions = sessions!
-                        // Filter the study sessions to only show the ones that are in the classes that the user is in.
-                        self.filterSessions()
-                    }
-                })
+                self.studySessions = sessions!
+                self.filterSessions()
             }
         }
     }
+    
     // Filter out study sessions that the user is not interested in.
     func filterSessions(){
         let userId = (PFUser.current()?.objectId)!
         for session in studySessions {
             let index = self.studySessions.index(of: session)
-            if (session["date"] as! Date) < Date.init(){
-                self.studySessions.remove(at: index!)
-                continue
-            }
             
-            if self.class_names.contains((session["course"])! as! String){
-                // keep it
-                // If the toggle is turned on, only get the sessions that the user is a part of. 
-                if studySessionSelector.selectedSegmentIndex == 1 {
-                    if (session["students"] as! Array).contains(userId){
+                if (session["students"] as! Array).contains(userId){
                         // keep it
-                    }
-                    else {
-                        self.studySessions.remove(at: index!)
-                    }
                 }
-            }
-            // Remove all study sessions that are in classes that the user is not a part of.
-            else {
-                self.studySessions.remove(at: index!)
-            }
+                else {
+                    self.studySessions.remove(at: index!)
+                }
         }
         self.studySessions.sort{ ($0["date"] as! Date) < ($1["date"] as! Date) }
         self.tableView.reloadData()
     }
     // Override the back button for the settings page to "Home" since the current title is too long
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = "Home"
-        navigationItem.backBarButtonItem = backItem
         // Called when the -> is pressed.
-        if segue.identifier == "showStudySession" {
+        if segue.identifier == "classShowStudySession" {
             let s_s = sender as! PFObject
             let destination = segue.destination as! StudySessionDetailViewController
             
@@ -150,11 +113,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-     func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of sections
         if searchController.isActive && searchController.searchBar.text != "" {
             return self.filteredSessions.count
@@ -163,11 +126,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             
             return self.studySessions.count
         }
-
+        
     }
     // Create cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCell", for: indexPath) as! StudySessionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "classShowStudySession", for: indexPath) as! CourseStudySessionTableViewCell
         
         let studySession:PFObject
         
@@ -178,27 +141,19 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         else {
             studySession = studySessions[indexPath.row]
         }
-
+        
         cell.delegate = self
         
         cell.studySession = [studySession]
         let date = studySession["date"] as! Date
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yy hh:mm a"
+        formatter.dateFormat = "MM/dd HH:mm a"
         let dateString = formatter.string(from: date)
         cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString
-        cell.className.text = (studySession["course"] as! String?)!
-
+        cell.class_name.text = (studySession["course"] as! String?)!
+        
         let userId = (PFUser.current()?.objectId)!
         
-        // If the user is already in the study session, make the button an arrow. Else make it a join button
-        if (studySession["students"] as! Array).contains(userId) {
-            cell.studySessionButtonLabel.setTitle("->", for: .normal)
-            
-        }
-        else {
-            cell.studySessionButtonLabel.setTitle("Join", for: .normal)
-        }
 
         return cell
     }
@@ -211,14 +166,14 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Expand tapped rows and return untapped cells to normal height
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-            return 125
+            return 145
         }
         return 44
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexPath) as! StudySessionTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! CourseStudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
         // Set the number of lines for a tapped cell
         cell.title_time.numberOfLines = 5
@@ -228,8 +183,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd HH:mm a"
             let dateString = formatter.string(from: date)
-
-            (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! StudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + dateString
+            
+            (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! CourseStudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + dateString
         }
         // If a cell has been tapped, show the extra info.
         if selectedRowIndex != indexPath.row {
@@ -238,11 +193,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             
             let description = "Description: " + (studySession["description"] as! String?)!
             let location = "Location: " + (studySession["location"] as! String?)!
-            
-            cell.title_time.text = (cell.title_time.text! + "\n\n" + description + "\n" + location + "\n")
-            cell.title_time.numberOfLines = 5
+            let count = (studySession["students"] as! Array<Any>).count
+            let peopleCount = "Going: " + count.description
+            cell.title_time.text = (cell.title_time.text! + "\n\n" + description + "\n" + location + "\n" + peopleCount + "\n")
+            cell.title_time.numberOfLines = 6
         }
-        // All other cells should be default.
+            // All other cells should be default.
         else {
             self.thereIsCellTapped = false
             self.selectedRowIndex = -1
@@ -251,7 +207,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd HH:mm a"
             let dateString = formatter.string(from: date)
-
+            
             cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString
             self.tableView.deselectRow(at: indexPath, animated: true)
             
@@ -261,13 +217,13 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.endUpdates()
     }
 }
+
 // function that gets called when someone presses the -> button
-extension HomeScreenViewController: StudySessionTableViewCellDelegate {
-    func goToSession(with cell: StudySessionTableViewCell) {
+extension ClassStudySessionsViewController: CourseStudySessionTableViewCellDelegate {
+    func goToSessions(with cell: CourseStudySessionTableViewCell) {
         let indexPath = tableView.indexPath(for: cell)!
         let s_s = studySessions[indexPath.row]
-        performSegue(withIdentifier: "showStudySession", sender: s_s)
+        performSegue(withIdentifier: "classShowStudySession", sender: s_s)
     }
     
 }
-

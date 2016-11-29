@@ -9,24 +9,22 @@
 import UIKit
 import Parse
 
-class AddClassViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
-    // Table view delegate
+class AddClassesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
     @IBOutlet var tableView: UITableView!
-    // Variable that holds all of the courses for the current user
+    
+    // Variable that holds all of the study sessions that are in the classes that the user is in.
     var allCourses = [PFObject]()
     var filteredCourses = [PFObject]()
-    //does actual search capabilities
-    let searchController = UISearchController(searchResultsController: nil)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Hide the keyboard
-        hideKeyboardWhenTappedAround()
-        // Set the title of the view controller
-        self.title = "Add Class"
-        // Find all of the courses for the current user
-        findAllCourses()
-        // Allow users to refresh the page if the pull down
+        // Set the title of the page
+        self.title = "Add a Class"
+        // Make a refresh controller for when users pull down on the table. This refresehes the data
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
@@ -40,21 +38,22 @@ class AddClassViewController: UIViewController, UITableViewDelegate, UITableView
         //search bar visual settings
         searchController.searchBar.placeholder = "Search for a class"
         searchController.searchBar.showsCancelButton = true
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Find all of the courses that we need to display
+        findCourses()
     }
     // Refresh function
     func refresh(refreshControl: UIRefreshControl) {
-        findAllCourses()
+        findCourses()
         refreshControl.endRefreshing()
     }
-    // Find all of the courses for the current user by running a Parse query in the Courses model for the student's ID.
-    func findAllCourses() {
-        let query = PFQuery(className:"Courses")
-        query.findObjectsInBackground { (object: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.allCourses = object!
-                self.tableView.reloadData()
-            }
-        }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     //search function
@@ -68,56 +67,111 @@ class AddClassViewController: UIViewController, UITableViewDelegate, UITableView
     {
         filteredCourses = allCourses.filter
             { course in
-            return (((course["name"]) as AnyObject).lowercased).contains(searchText.lowercased())
+                return (((course["name"]) as AnyObject).lowercased).contains(searchText.lowercased())
         }
         
         tableView.reloadData()
     }
     
-    //table functions
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != ""
-        {
-            return self.filteredCourses.count
-        }
-        else
-        {
-            return self.allCourses.count
-        }
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "addCoursesCell", for: indexPath) as! CoursesTableViewCell
-        let course:PFObject
-        if searchController.isActive && searchController.searchBar.text != ""
-        {
-            course = filteredCourses[indexPath.row]
-        }
-        else
-        {
-            course = allCourses[indexPath.row]
-        }
-        
-        cell.courseLabel.text = (course["name"]) as? String
-        return cell
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCourseDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let course = allCourses[(indexPath as NSIndexPath).row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! CourseDetailViewController
-                controller.detailCourse = course
-                /*controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true*/
+    // Function that runs a query to find all StudySessions objects that have the current user's id in it's list of students
+    func findCourses() {
+        let user = PFUser.current()
+        let query = PFQuery(className:"Courses")
+        query.whereKey("students", notEqualTo: (user?.objectId)!)
+        query.findObjectsInBackground { (classes: [PFObject]?, error: Error?) in
+            if error == nil {
+                // print("SWEET")
+                self.allCourses = classes!
+                // Reload the page once this query is complete
+                self.tableView.reloadData()
             }
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
     }
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Return the number of total study sessions in the array
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return self.filteredCourses.count
+        }
+        else {
+            return self.allCourses.count
+        }
+    }
+    // Create cells
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "studySessionsCells", for: indexPath)
+        let course:PFObject
+        if searchController.isActive && searchController.searchBar.text != "" {
+            course = filteredCourses[indexPath.row]
+        }
+        else {
+            course = allCourses[indexPath.row]
+        }
+        
+        cell.textLabel?.text = course["name"] as! String?
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath){
+        print("selected")
+        let courseIndex = tableView.indexPathForSelectedRow?.row
+        var detailCourse:PFObject
+        if searchController.isActive && searchController.searchBar.text != "" {
+            detailCourse = filteredCourses[courseIndex!]
+        }
+        else {
+            detailCourse = allCourses[courseIndex!]
+        }
+        
+        // create the alert
+        let alert = UIAlertController(title: "Add course?", message: "\(detailCourse["name"]!) \nProfessor: \(detailCourse["professor"]!)", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // create the actions
+        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            NSLog("OK Pressed")
+            
+            let user = PFUser.current()
+            let query = PFQuery(className:"Courses")
+            query.getObjectInBackground(withId: (detailCourse.objectId)!) {
+                (course: PFObject?, error: Error?) in
+                if error == nil
+                {
+                    print(course?["students"])
+                    if course?["students"] == nil {
+                        course?["students"] = [(user?.objectId)!]
+                    }
+                    else {
+                        course?.add((user?.objectId)!, forKey: "students")
+                    }
+                    course?.saveInBackground()
+                    let successAlert = UIAlertController(title: "Success", message: String(describing: "You have joined this class."), preferredStyle: UIAlertControllerStyle.alert)
+                    successAlert.addAction(UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(successAlert, animated: true, completion: nil)
+                    
+                    self.findCourses()
+                    
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        
+        // add the actions (buttons)
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
 }

@@ -147,7 +147,7 @@ class ClassStudySessionsViewController: UIViewController, UITableViewDelegate, U
         cell.studySession = [studySession]
         let date = studySession["date"] as! Date
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd HH:mm a"
+        formatter.dateFormat = "MM/dd/yy hh:mm a"
         let dateString = formatter.string(from: date)
         cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString
         cell.class_name.text = (studySession["course"] as! String?)!
@@ -176,12 +176,12 @@ class ClassStudySessionsViewController: UIViewController, UITableViewDelegate, U
         let cell = tableView.cellForRow(at: indexPath) as! CourseStudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
         // Set the number of lines for a tapped cell
-        cell.title_time.numberOfLines = 5
+        cell.title_time.numberOfLines = 6
         // If a cell has been untapped, we want to reset it to its defaults
         if self.selectedRowIndex != -1 {
             let date = studySession["date"] as! Date
             let formatter = DateFormatter()
-            formatter.dateFormat = "MM/dd HH:mm a"
+            formatter.dateFormat = "MM/dd/yy hh:mm a"
             let dateString = formatter.string(from: date)
             
             (self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as! CourseStudySessionTableViewCell).title_time.text = (studySession["name"] as! String?)! + " - " + dateString
@@ -205,7 +205,7 @@ class ClassStudySessionsViewController: UIViewController, UITableViewDelegate, U
             cell.title_time.numberOfLines = 1
             let date = studySession["date"] as! Date
             let formatter = DateFormatter()
-            formatter.dateFormat = "MM/dd HH:mm a"
+            formatter.dateFormat = "MM/dd/yy hh:mm a"
             let dateString = formatter.string(from: date)
             
             cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString

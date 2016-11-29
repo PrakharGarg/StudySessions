@@ -211,7 +211,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Expand tapped rows and return untapped cells to normal height
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-            return 125
+            return 145
         }
         return 44
     }
@@ -221,7 +221,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.cellForRow(at: indexPath) as! StudySessionTableViewCell
         let studySession = studySessions[indexPath.row]
         // Set the number of lines for a tapped cell
-        cell.title_time.numberOfLines = 5
+        cell.title_time.numberOfLines = 6
         // If a cell has been untapped, we want to reset it to its defaults
         if self.selectedRowIndex != -1 {
             let date = studySession["date"] as! Date
@@ -238,9 +238,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             
             let description = "Description: " + (studySession["description"] as! String?)!
             let location = "Location: " + (studySession["location"] as! String?)!
-            
-            cell.title_time.text = (cell.title_time.text! + "\n\n" + description + "\n" + location + "\n")
-            cell.title_time.numberOfLines = 5
+            let count = (studySession["students"] as! Array<Any>).count
+            let peopleCount = "Going: " + count.description
+            cell.title_time.text = (cell.title_time.text! + "\n\n" + description + "\n" + location + "\n" + peopleCount + "\n")
+            cell.title_time.numberOfLines = 6
         }
         // All other cells should be default.
         else {
@@ -249,7 +250,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.title_time.numberOfLines = 1
             let date = studySession["date"] as! Date
             let formatter = DateFormatter()
-            formatter.dateFormat = "MM/dd HH:mm a"
+            formatter.dateFormat = "MM/dd/yy hh:mm a"
             let dateString = formatter.string(from: date)
 
             cell.title_time.text = (studySession["name"] as! String?)! + " - " + dateString

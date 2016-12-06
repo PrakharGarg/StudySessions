@@ -88,7 +88,7 @@ class AddNewFileViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.title = studySession["name"] as? String
+        self.title = "Add a New File"
 
     }
 

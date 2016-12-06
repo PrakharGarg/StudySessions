@@ -199,6 +199,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         else {
             cell.studySessionButtonLabel.setTitle("Join", for: .normal)
         }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
 
         return cell
     }

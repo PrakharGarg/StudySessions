@@ -154,6 +154,8 @@ class ClassStudySessionsViewController: UIViewController, UITableViewDelegate, U
         
         let userId = (PFUser.current()?.objectId)!
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
 
         return cell
     }

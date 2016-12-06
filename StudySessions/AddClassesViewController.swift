@@ -116,6 +116,7 @@ class AddClassesViewController: UIViewController, UITableViewDelegate, UITableVi
 
         cell.textLabel?.text = course["name"] as! String?
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         return cell
     }

@@ -28,6 +28,8 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.backgroundView = refreshControl
+        
+        self.title = "Uploaded Files"
     }
     
     // Refresh on View

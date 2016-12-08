@@ -17,7 +17,7 @@ class AllPostsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Find all posts for the current study sessions
         loadPosts()
         // Allow users to refresh the page if the pull down

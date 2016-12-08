@@ -13,8 +13,11 @@ class ViewRepliesViewController: UIViewController {
     
     var post: PFObject!
     
+    @IBOutlet weak var postText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        postText.text! = post?["postText"] as! String
 
         // Do any additional setup after loading the view.
     }
@@ -24,6 +27,8 @@ class ViewRepliesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func AddResponseBtn(_ sender: Any) {
+    }
 
     /*
     // MARK: - Navigation

@@ -34,6 +34,7 @@
 		EBD6039F1DF99EA60065C720 /* AllPostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD6039E1DF99EA60065C720 /* AllPostsTableViewController.swift */; };
 		EBD603A11DF9AB740065C720 /* AddNewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD603A01DF9AB740065C720 /* AddNewPostViewController.swift */; };
 		EBD603A31DF9AD390065C720 /* ViewRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD603A21DF9AD390065C720 /* ViewRepliesViewController.swift */; };
+		EBD603A51DF9F2810065C720 /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD603A41DF9F2810065C720 /* ReplyTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		EBD6039E1DF99EA60065C720 /* AllPostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostsTableViewController.swift; sourceTree = "<group>"; };
 		EBD603A01DF9AB740065C720 /* AddNewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPostViewController.swift; sourceTree = "<group>"; };
 		EBD603A21DF9AD390065C720 /* ViewRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRepliesViewController.swift; sourceTree = "<group>"; };
+		EBD603A41DF9F2810065C720 /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				EB50E2511DEAFDEB0088B338 /* ViewFileViewController.swift */,
 				EB39A02C1DEA7A9C0036BE99 /* AddNewFileViewController.swift */,
 				1CF235AD1DECF204005CF922 /* ClassStudySessionsViewController.swift */,
+				EBD603A41DF9F2810065C720 /* ReplyTableViewCell.swift */,
 				1CF235AE1DECF204005CF922 /* CourseStudySessionTableViewCell.swift */,
 				1CF235AF1DECF204005CF922 /* ShowCoursesTableCell.swift */,
 				1CE538B31DB678620039B4A2 /* AppDelegate.swift */,
@@ -277,6 +280,7 @@
 			files = (
 				1CF235B21DECF204005CF922 /* CourseStudySessionTableViewCell.swift in Sources */,
 				EBD603A11DF9AB740065C720 /* AddNewPostViewController.swift in Sources */,
+				EBD603A51DF9F2810065C720 /* ReplyTableViewCell.swift in Sources */,
 				1CE538B41DB678620039B4A2 /* AppDelegate.swift in Sources */,
 				1CA624FA1DB6C24A00F4E07B /* SettingsScreenViewController.swift in Sources */,
 				1CC886C01DB6AA09007F5E62 /* PageViewController.swift in Sources */,

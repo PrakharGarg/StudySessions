@@ -66,5 +66,9 @@ class StudySessionDetailViewController: UIViewController {
             let destination = segue.destination as! ViewFilesViewController
             destination.studySession = self.studySession
         }
+        if(segue.identifier == "discussionBoard") {
+            let destination = segue.destination as! AllPostsTableViewController
+            destination.studySession = self.studySession
+        }
     }
 }

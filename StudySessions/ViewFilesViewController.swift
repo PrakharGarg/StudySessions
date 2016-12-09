@@ -44,7 +44,6 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func loadFiles() {
         //make sure imageFiles is empty
-        imageFiles.removeAll(keepingCapacity: false)
         let studySessionId = studySession.objectId!
             let query = PFQuery(className:"StudySessions")
             query.whereKey("objectId", equalTo: studySessionId)

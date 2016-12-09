@@ -45,24 +45,23 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
     func loadFiles() {
         //make sure imageFiles is empty
         imageFiles.removeAll(keepingCapacity: false)
-        let query = PFQuery(className: "StudySessions")
-        query.getObjectInBackground(withId: studySession.objectId!, block: { (object: PFObject?, error: Error?) in
-            if error == nil {
-                if let allImageFiles = object?.value(forKey: "files") as? [PFFile]!{
-                    if allImageFiles == nil {
-                        self.imageFiles = [PFFile]()
-                        self.tableView.reloadData()
-                    } else {
-                        
-                            self.imageFiles = allImageFiles
-//                            self.imageFiles.append(imageFile)
+        let studySessionId = studySession.objectId!
+            let query = PFQuery(className:"StudySessions")
+            query.whereKey("objectId", equalTo: studySessionId)
+            query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+                if error == nil {
+                    let object = objects?[0]
+                    if let allImageFiles = object?.value(forKey: "files") as? [PFFile]!{
+                        if allImageFiles == nil {
+                            self.imageFiles = [PFFile]()
                             self.tableView.reloadData()
-                        
+                        } else {
+                            self.imageFiles = allImageFiles
+                            self.tableView.reloadData()
+                        }
                     }
                 }
-            }
-
-        })
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

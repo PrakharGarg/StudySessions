@@ -71,21 +71,9 @@ class ViewRepliesViewController: UIViewController, UITableViewDelegate, UITableV
             }
             post?.saveInBackground()
             
-            //Alerts user and returns to View Files view
-            let alertController = UIAlertController(
-                title: "Yay!",
-                message: "Response has successfully been added.",
-                preferredStyle: .alert
-            )
-            
-            let OKAction = UIAlertAction(
-            title: "Okay", style: .default) { (action:UIAlertAction!) in
-                self.responseTextField.text! = ""
-                self.tableView.reloadData()
-            }
-            alertController.addAction(OKAction)
-            
-            present(alertController, animated: true, completion:nil)
+            self.responseTextField.text! = ""
+            self.loadResponses()
+            self.tableView.reloadData()
         }
 
     }

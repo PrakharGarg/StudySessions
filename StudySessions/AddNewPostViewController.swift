@@ -17,6 +17,7 @@ class AddNewPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title  = "Add a New Post"
 
         // Do any additional setup after loading the view.
     }

@@ -20,7 +20,7 @@ class ViewRepliesViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        postText.text! = post?["postText"] as! String
+        postText.text! = "Original Post: " + (post?["postText"] as! String)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         // Find all replies for the current post

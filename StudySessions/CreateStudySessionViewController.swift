@@ -114,11 +114,9 @@ class CreateStudySessionViewController: UIViewController, UIPickerViewDataSource
     
     }
     
-    
-
-    
     override func viewWillAppear(_ animated: Bool) {
         findCourses()
+        
     }
 
     override func didReceiveMemoryWarning() {

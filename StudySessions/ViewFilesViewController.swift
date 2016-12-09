@@ -53,10 +53,11 @@ class ViewFilesViewController: UIViewController, UITableViewDelegate, UITableVie
                         self.imageFiles = [PFFile]()
                         self.tableView.reloadData()
                     } else {
-                        for imageFile in allImageFiles {
-                            self.imageFiles.append(imageFile)
+                        
+                            self.imageFiles = allImageFiles
+//                            self.imageFiles.append(imageFile)
                             self.tableView.reloadData()
-                        }
+                        
                     }
                 }
             }

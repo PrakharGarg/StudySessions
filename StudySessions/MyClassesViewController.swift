@@ -32,8 +32,6 @@ class MyClassesViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.allowsSelection = true
-        
     }
     
     // Refresh on View

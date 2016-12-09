@@ -1,20 +1,25 @@
 1.) Implementation Contributions: 
   - Prakhar Garg pg9228
-    Added functionality to the home screen to toggle between viewing all Study Sessions and the ones that the user has joined. Also allows users to join a session.
+    Worked on the Home Screen and Settings page functionality
+    Setup Parse Backend
+    Implemented frontend UI
   - Elizabeth Haynes ejh2369
-    Popover functionality for adding a class.
-    Allows users to search for a session on the home screen.
+    Worked on the My Classes, Class History, and Add a Class pages
+    Allows users to search for a session on the home screen and in the class histories
   - Nareen Inukoti ni975
-    Created the Study Session View. 
+    Worked on the Create a Study Session, Upload a File, and Discussion Forum pages
+    Implemented file sharing with Parse backend
 
 2.) Grading Level:
   - Same grade for all members
   
 3.) Differences
-  - Moved the group files to the Final build due to time constraints. We have also reconsidered adding a message chat for each study session due to technical difficulty.
+  - We were unable to connect with UT's system due to restricted access, so the app cannot reserve rooms or scrape UT's registrar for classes. 
+  - We decided against having a feature for repeated study sessions, since we did not want to clutter the home screen with a huge list of repeated events. We also did not know how we would stop the event from repeating forever. 
+  - We also decided not to implement social media integration as we wanted the app to be self-contained and have all of the event info located in the app itself. 
   
 4.) Special Instructions 
-  - Use Xcode 8 with Swift 3 Compiler 
+  - Use Xcode 8.1 with Swift 3 Compiler 
   - The first login may take a while due to Heroku instance "waking up"
   
   
